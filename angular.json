@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "store-example"
+  "defaultProject": "store-example",
+  "cli": {
+    "analytics": false
+  }
 }
