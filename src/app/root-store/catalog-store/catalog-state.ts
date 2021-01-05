@@ -1,14 +1,23 @@
-import { mensInitialState, MensState } from './mens/mens-state';
-import { womenInitialState, WomenState } from './women/women-state';
+import { ActionReducerMap } from '@ngrx/store';
+import {
+  categoryReducer,
+  CategoryState,
+  CATEGORY_FEATURE_SLICE,
+} from './category/category.reducer';
+import {
+  productReducer,
+  ProductState,
+  PRODUCT_FEATURE,
+} from './product/product.reducer';
 
 export const CATALOG_FEATURE_SLICE = 'catalog';
 
 export interface CatalogState {
-  mens: MensState;
-  womens: WomenState;
+  [PRODUCT_FEATURE]: ProductState;
+  [CATEGORY_FEATURE_SLICE]: CategoryState;
 }
 
-export const initialState: CatalogState = {
-  mens: mensInitialState,
-  womens: womenInitialState,
+export const reducer: ActionReducerMap<CatalogState> = {
+  [PRODUCT_FEATURE]: productReducer,
+  [CATEGORY_FEATURE_SLICE]: categoryReducer,
 };

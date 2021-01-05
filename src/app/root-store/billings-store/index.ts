@@ -2,6 +2,7 @@ export { BillingInvoice } from './billing-invoice';
 export {
   BILLINGS_FEATURE_SLICE,
   BillingsState,
-  initialState as billingInitialState,
-} from './billings-state';
+  billingsReducer,
+} from './billings.reducer';
+export { BillingsEffects } from './billings.effects';
 export { BillingsStoreModule } from './billings-store.module';
