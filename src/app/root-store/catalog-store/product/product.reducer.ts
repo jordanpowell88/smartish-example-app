@@ -1,6 +1,6 @@
 import { Action, createReducer } from '@ngrx/store';
-import { Product } from 'src/app/interfaces';
 import { BaseState } from '../../base-state';
+import { Product } from './product';
 
 export const PRODUCT_FEATURE_SLICE = 'product';
 

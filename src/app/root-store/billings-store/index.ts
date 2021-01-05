@@ -5,4 +5,5 @@ export {
   billingsReducer,
 } from './billings.reducer';
 export { BillingsEffects } from './billings.effects';
+export { BillingService } from './billing.service';
 export { BillingsStoreModule } from './billings-store.module';

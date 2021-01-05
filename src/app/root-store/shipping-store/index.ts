@@ -5,4 +5,5 @@ export {
   shippingReducer,
 } from './shipping.reducer';
 export { ShippingEffects } from './shipping.effects';
+export { ShippingService } from './shipping.service';
 export { ShippingStoreModule } from './shipping-store.module';

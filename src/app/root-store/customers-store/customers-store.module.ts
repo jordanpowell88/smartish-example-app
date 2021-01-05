@@ -4,6 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { customersReducer, CUSTOMERS_FEATURE } from './customers.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CustomersEffects } from './customers.effects';
+import { CustomersService } from './customers.service';
 
 @NgModule({
   declarations: [],
@@ -12,5 +13,6 @@ import { CustomersEffects } from './customers.effects';
     StoreModule.forFeature(CUSTOMERS_FEATURE, customersReducer),
     EffectsModule.forFeature([CustomersEffects]),
   ],
+  providers: [CustomersService],
 })
 export class CustomersStoreModule {}

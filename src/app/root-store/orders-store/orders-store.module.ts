@@ -4,6 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { ordersReducer, ORDERS_FEATURE } from './orders.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { OrdersEffects } from './orders.effects';
+import { OrdersService } from './orders.service';
 
 @NgModule({
   declarations: [],
@@ -12,5 +13,6 @@ import { OrdersEffects } from './orders.effects';
     StoreModule.forFeature(ORDERS_FEATURE, ordersReducer),
     EffectsModule.forFeature([OrdersEffects]),
   ],
+  providers: [OrdersService],
 })
 export class OrdersStoreModule {}
