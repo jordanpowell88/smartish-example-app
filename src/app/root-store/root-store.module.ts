@@ -8,6 +8,7 @@ import { CustomersStoreModule } from './customers-store/customers-store.module';
 import { OrdersStoreModule } from './orders-store/orders-store.module';
 import { ShippingStoreModule } from './shipping-store/shipping-store.module';
 import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [],
@@ -26,6 +27,7 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
     }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
+    StoreDevtoolsModule.instrument(),
   ],
 })
 export class RootStoreModule {}
