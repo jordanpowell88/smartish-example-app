@@ -1,6 +1,6 @@
 export { BillingInvoice } from './billing-invoice';
 export {
-  BILLINGS_FEATURE_SLICE,
+  BILLINGS_FEATURE,
   BillingsState,
   billingsReducer,
 } from './billings.reducer';

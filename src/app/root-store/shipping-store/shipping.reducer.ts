@@ -2,7 +2,7 @@ import { BaseState } from '../base-state';
 import { ShippingInvoice } from './shipping-invoice';
 import { Action, createReducer } from '@ngrx/store';
 
-export const SHIPPING_FEATURE_STATE = 'shipping';
+export const SHIPPING_FEATURE = 'shipping';
 
 export interface ShippingState extends BaseState {
   shippingInvoice: ShippingInvoice[];

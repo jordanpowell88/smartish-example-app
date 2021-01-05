@@ -1,6 +1,6 @@
 export { Customer } from './customer';
 export {
-  CUSTOMERS_FEATURE_SLICE,
+  CUSTOMERS_FEATURE,
   CustomersState,
   customersReducer,
 } from './customers.reducer';

@@ -7,17 +7,17 @@ import {
 import {
   productReducer,
   ProductState,
-  PRODUCT_FEATURE,
+  PRODUCT_FEATURE_SLICE,
 } from './product/product.reducer';
 
-export const CATALOG_FEATURE_SLICE = 'catalog';
+export const CATALOG_FEATURE = 'catalog';
 
 export interface CatalogState {
-  [PRODUCT_FEATURE]: ProductState;
+  [PRODUCT_FEATURE_SLICE]: ProductState;
   [CATEGORY_FEATURE_SLICE]: CategoryState;
 }
 
 export const reducer: ActionReducerMap<CatalogState> = {
-  [PRODUCT_FEATURE]: productReducer,
+  [PRODUCT_FEATURE_SLICE]: productReducer,
   [CATEGORY_FEATURE_SLICE]: categoryReducer,
 };

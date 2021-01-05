@@ -1,5 +1,5 @@
 export {
-  PRODUCT_FEATURE,
+  PRODUCT_FEATURE_SLICE,
   ProductState,
   productInitialState,
   productReducer,

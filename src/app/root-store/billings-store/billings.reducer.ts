@@ -2,7 +2,7 @@ import { BillingInvoice } from './billing-invoice';
 import { Action, createReducer } from '@ngrx/store';
 import { BaseState } from '../base-state';
 
-export const BILLINGS_FEATURE_SLICE = 'billings';
+export const BILLINGS_FEATURE = 'billings';
 
 export interface BillingsState extends BaseState {
   billingInvoice: BillingInvoice;

@@ -1,6 +1,6 @@
 export { ShippingInvoice } from './shipping-invoice';
 export {
-  SHIPPING_FEATURE_STATE,
+  SHIPPING_FEATURE,
   ShippingState,
   shippingReducer,
 } from './shipping.reducer';

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
-import { ordersReducer, ORDERS_FEATURE_SLICE } from './orders.reducer';
+import { ordersReducer, ORDERS_FEATURE } from './orders.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { OrdersEffects } from './orders.effects';
 
@@ -9,7 +9,7 @@ import { OrdersEffects } from './orders.effects';
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forFeature(ORDERS_FEATURE_SLICE, ordersReducer),
+    StoreModule.forFeature(ORDERS_FEATURE, ordersReducer),
     EffectsModule.forFeature([OrdersEffects]),
   ],
 })

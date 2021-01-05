@@ -2,15 +2,15 @@ import { Action, createReducer } from '@ngrx/store';
 import { BaseState } from '../base-state';
 import { Customer } from './customer';
 
-export const CUSTOMERS_FEATURE_SLICE = 'customers';
+export const CUSTOMERS_FEATURE = 'customers';
 
 export interface CustomersState extends BaseState {
-  [CUSTOMERS_FEATURE_SLICE]: Customer[];
+  [CUSTOMERS_FEATURE]: Customer[];
   selectedId?: string;
 }
 
 const initialState: CustomersState = {
-  [CUSTOMERS_FEATURE_SLICE]: [],
+  [CUSTOMERS_FEATURE]: [],
   isLoading: false,
 };
 
