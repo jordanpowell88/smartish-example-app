@@ -1,0 +1,21 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@bb-smartish/core-state": ["libs/core-state/src/index.ts"],
+      "@bb-smartish/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+    },
+    "rootDir": "."
+  }
+}

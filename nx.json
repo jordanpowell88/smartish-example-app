@@ -1,0 +1,29 @@
+{
+  "npmScope": "bb-smartish",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
+  },
+  "projects": {
+    "api-interfaces": {
+      "tags": []
+    },
+    "core-state": {
+      "tags": []
+    },
+    "web": {
+      "tags": []
+    },
+    "web-e2e": {
+      "tags": [],
+      "implicitDependencies": ["web"]
+    }
+  }
+}
