@@ -3,5 +3,6 @@ module.exports = {
     '<rootDir>/apps/web',
     '<rootDir>/libs/api-interfaces',
     '<rootDir>/libs/core-state',
+    '<rootDir>/apps/api',
   ],
 };
