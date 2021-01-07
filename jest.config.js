@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/libs/api-interfaces',
     '<rootDir>/libs/core-state',
     '<rootDir>/apps/api',
+    '<rootDir>/libs/material',
   ],
 };
