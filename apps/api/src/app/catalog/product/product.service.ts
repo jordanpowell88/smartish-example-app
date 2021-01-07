@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
-import { ShippingInvoice } from './shipping-invoice';
+import { Product } from './product';
 
 @Injectable()
-export class ShippingService extends TypeOrmCrudService<ShippingInvoice> {
-  constructor(@InjectRepository(ShippingInvoice) readonly repo) {
+export class ProductService extends TypeOrmCrudService<Product> {
+  constructor(@InjectRepository(Product) readonly repo) {
     super(repo);
   }
 }

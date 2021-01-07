@@ -1,11 +1,6 @@
-export type Size = 'S' | 'M' | 'L' | 'XL' | 'XXL';
+import { Product as IProduct, Size, Photo } from '@bb-smartish/api-interfaces';
 
-export interface Photo {
-  source: string;
-  title: string;
-}
-
-export interface Product {
+export interface Product extends IProduct {
   sku: string;
   size: Size;
   quantity: number;
