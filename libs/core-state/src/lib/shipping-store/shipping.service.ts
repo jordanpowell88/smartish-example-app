@@ -12,7 +12,7 @@ export class ShippingService {
   }
 
   load(id: string): Observable<ShippingInvoice> {
-    return of({});
+    return of({} as ShippingInvoice);
   }
 
   create(shippingInvoice: ShippingInvoice): Observable<ShippingInvoice> {
@@ -24,6 +24,6 @@ export class ShippingService {
   }
 
   delete(id: string): Observable<ShippingInvoice> {
-    return of({});
+    return of({} as ShippingInvoice);
   }
 }

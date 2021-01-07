@@ -12,7 +12,7 @@ export class BillingService {
   }
 
   load(id: string): Observable<BillingInvoice> {
-    return of({});
+    return of({} as BillingInvoice);
   }
 
   create(billingInvoice: BillingInvoice): Observable<BillingInvoice> {
@@ -24,6 +24,6 @@ export class BillingService {
   }
 
   delete(id: string): Observable<BillingInvoice> {
-    return of({});
+    return of({} as BillingInvoice);
   }
 }
