@@ -11,3 +11,8 @@ export const selectAllProducts = createSelector(
   productFeatureSelector,
   (state) => state[PRODUCT_FEATURE_SLICE]
 );
+
+export const selectPaginator = createSelector(
+  productFeatureSelector,
+  (state) => state.pagination
+);

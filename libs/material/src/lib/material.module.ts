@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -20,6 +22,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatTableModule,
     MatInputModule,
     MatSelectModule,
+    MatChipsModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatMenuModule,
@@ -30,6 +34,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatTableModule,
     MatInputModule,
     MatSelectModule,
+    MatChipsModule,
+    MatPaginatorModule,
   ],
 })
 export class MaterialModule {}
