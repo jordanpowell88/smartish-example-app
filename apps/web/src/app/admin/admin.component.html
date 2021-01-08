@@ -1,12 +1,6 @@
-<bb-smartish-menu></bb-smartish-menu>
+<h1>Dashboard</h1>
+<h4>Welcome to Briebug Smartish Store Example</h4>
 
-<section id="main">
-    <div class="content">
-        <h1>Dashboard</h1>
-        <h4>Welcome to Briebug Smartish Store Example</h4>
-
-        <bb-smartish-dashboard-preview *ngFor="let preview of previews$ | async" [title]="preview.title" [subtitle]="preview.subtitle">
-            
-        </bb-smartish-dashboard-preview>
-    </div>
-</section>
+<bb-smartish-dashboard-preview *ngFor="let preview of previews$ | async" [title]="preview.title" [subtitle]="preview.subtitle" [total]="preview.total">
+    
+</bb-smartish-dashboard-preview>

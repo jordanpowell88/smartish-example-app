@@ -1,4 +1,5 @@
 import { Product as IProduct, Size, Photo } from '@bb-smartish/api-interfaces';
+import { Category } from '../category';
 
 export interface Product extends IProduct {
   sku: string;
@@ -6,5 +7,8 @@ export interface Product extends IProduct {
   quantity: number;
   name: string;
   description: string;
+  status: string;
+  inventory: string;
+  category: Category;
   photos: Photo[];
 }
