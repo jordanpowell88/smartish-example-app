@@ -1,0 +1,44 @@
+<h1>Catalog</h1>
+<h4>A Master List of Briebug Products</h4>
+
+<mat-card>
+    <mat-card-content>
+
+        <table mat-table [dataSource]="catalog$ | async" class="mat-elevation-z1">
+            <ng-container matColumnDef="product">
+                <th mat-header-cell *matHeaderCellDef>Product</th>
+                <td mat-cell *matCellDef="let product">{{ product.name }}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let product">
+                    <!-- TODO make component -->
+                    <mat-chip-list>
+                        <mat-chip color="success">{{ product.status }}</mat-chip>
+                    </mat-chip-list>
+                </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="inventory">
+                <th mat-header-cell *matHeaderCellDef>Inventory</th>
+                <td mat-cell *matCellDef="let product">{{ product.inventory }}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef>Category</th>
+                <td mat-cell *matCellDef="let product">{{ product.category.name }}</td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <!-- TODO Make Own Component -->
+        <mat-paginator *ngIf="(paginator$ | async) as paginator"
+            [length]="paginator.length"
+            [pageSize]="paginator.pageSize"
+            [pageSizeOptions]="paginator.pageSizeOptions"
+            (page)="pageEvent = $event">
+        </mat-paginator>
+    </mat-card-content>
+</mat-card>

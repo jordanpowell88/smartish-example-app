@@ -7,6 +7,11 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
   },
+  {
+    path: 'catalog',
+    loadChildren: () =>
+      import('./catalog/catalog.module').then((m) => m.CatalogModule),
+  },
 ];
 
 @NgModule({

@@ -12,7 +12,7 @@ export class CategoryService {
   }
 
   load(id: string): Observable<Category> {
-    return of({});
+    return of({} as Category);
   }
 
   create(category: Category): Observable<Category> {
@@ -24,6 +24,6 @@ export class CategoryService {
   }
 
   delete(id: string): Observable<Category> {
-    return of({});
+    return of({} as Category);
   }
 }
