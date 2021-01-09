@@ -12,7 +12,25 @@ export interface OrdersState extends BaseState {
 }
 
 const initialState: OrdersState = {
-  [ORDERS_FEATURE]: [],
+  [ORDERS_FEATURE]: [
+    {
+      id: 1,
+      date: new Date(),
+      customer: {
+        firstName: 'Jon',
+        lastName: 'Rista',
+        phone: null,
+        address: null,
+        email: null,
+        totalOrders: 2,
+        totalSpent: 105.5,
+      },
+      total: 45.99,
+      payment: 'Paid',
+      fulfillment: 'Unfulfilled',
+      items: 2,
+    },
+  ],
   isLoading: false,
   pagination: {
     pageIndex: 0,

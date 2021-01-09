@@ -12,7 +12,7 @@ export class OrdersService {
   }
 
   load(id: string): Observable<Order> {
-    return of({});
+    return of({} as Order);
   }
 
   create(order: Order): Observable<Order> {
@@ -24,6 +24,6 @@ export class OrdersService {
   }
 
   delete(id: string): Observable<Order> {
-    return of({});
+    return of({} as Order);
   }
 }
