@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  selectAllProducts,
-  selectPaginator,
-} from 'libs/core-state/src/lib/catalog-store/product/product.selectors';
+import { Product, productSelectors } from '@bb-smartish/core-state';
+
+type CatalogColumnKeys = keyof Product;
 
 @Component({
   selector: 'bb-smartish-catalog',
@@ -11,9 +10,14 @@ import {
   styleUrls: ['./catalog.component.scss'],
 })
 export class CatalogComponent {
-  catalog$ = this.store.select(selectAllProducts);
-  paginator$ = this.store.select(selectPaginator);
-  displayedColumns = ['product', 'status', 'inventory', 'category'];
+  catalog$ = this.store.select(productSelectors.selectAllProducts);
+  paginator$ = this.store.select(productSelectors.selectPaginator);
+  displayedColumns: CatalogColumnKeys[] = [
+    'name',
+    'status',
+    'inventory',
+    'category',
+  ];
 
   constructor(private readonly store: Store) {}
 }
