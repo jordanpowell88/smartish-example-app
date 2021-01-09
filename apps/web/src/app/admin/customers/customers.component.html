@@ -1,0 +1,34 @@
+<h1>Customers</h1>
+<h4>A Master List of Briebug Customers</h4>
+
+<mat-card>
+    <mat-card-content>
+
+        <table mat-table [dataSource]="customers$ | async" class="mat-elevation-z1">
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>Customer</th>
+                <td mat-cell *matCellDef="let customer">{{ customer.firstName }} {{ customer.lastName }}<br />{{ customer.email }}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="totalOrders">
+                <th mat-header-cell *matHeaderCellDef>Total Orders</th>
+                <td mat-cell *matCellDef="let customer">{{ customer.totalOrders }}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="totalSpent">
+                <th mat-header-cell *matHeaderCellDef>Total Spent</th>
+                <td mat-cell *matCellDef="let customer">{{ customer.totalSpent | currency }}</td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <!-- TODO Make Own Component -->
+        <mat-paginator *ngIf="(paginator$ | async) as paginator"
+            [length]="paginator.length"
+            [pageSize]="paginator.pageSize"
+            [pageSizeOptions]="paginator.pageSizeOptions"
+            (page)="pageEvent = $event">
+        </mat-paginator>
+    </mat-card-content>
+</mat-card>

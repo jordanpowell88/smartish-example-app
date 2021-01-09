@@ -12,12 +12,12 @@
             
             <ng-container matColumnDef="date">
                 <th mat-header-cell *matHeaderCellDef>Date</th>
-                <td mat-cell *matCellDef="let order">{{ order.date</td>
+                <td mat-cell *matCellDef="let order">{{ order.date  | date }}</td>
             </ng-container>
             
             <ng-container matColumnDef="customer">
                 <th mat-header-cell *matHeaderCellDef>Customer</th>
-                <td mat-cell *matCellDef="let order">{{ order.customer }}</td>
+                <td mat-cell *matCellDef="let order">{{ order.customer.firstName }} {{ order.customer.lastName }}</td>
             </ng-container>
             
             <ng-container matColumnDef="total">
@@ -32,11 +32,16 @@
 
             <ng-container matColumnDef="fulfillment">
                 <th mat-header-cell *matHeaderCellDef>Fulfillment</th>
-                <td mat-cell *matCellDef="let order">{{ order.fulfillment }}</td>
+                <td mat-cell *matCellDef="let order">
+                     <!-- TODO make component -->
+                     <mat-chip-list>
+                        <mat-chip>{{ order.fulfillment }}</mat-chip>
+                    </mat-chip-list>
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="items">
-                <th mat-header-cell *matHeaderCellDef>ITems</th>
+                <th mat-header-cell *matHeaderCellDef>Items</th>
                 <td mat-cell *matCellDef="let order">{{ order.items }}</td>
             </ng-container>
             
