@@ -1,13 +1,14 @@
 import { Paginator } from '@bb-smartish/api-interfaces';
-import { Action, createReducer } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import { BaseState } from '../base-state';
 import { Order } from './order';
+import { setSelectedOrderId } from './orders.actions';
 
 export const ORDERS_FEATURE = 'orders';
 
 export interface OrdersState extends BaseState {
   [ORDERS_FEATURE]: Order[];
-  selectedId?: string;
+  selectedId?: number;
   pagination: Paginator;
 }
 
@@ -64,7 +65,13 @@ const initialState: OrdersState = {
   },
 };
 
-const reducer = createReducer(initialState);
+const reducer = createReducer(
+  initialState,
+  on(setSelectedOrderId, (state, { selectedId }) => ({
+    ...state,
+    selectedId,
+  }))
+);
 
 export function ordersReducer(
   state = initialState,

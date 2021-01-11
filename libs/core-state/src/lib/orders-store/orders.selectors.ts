@@ -14,3 +14,7 @@ export const selectPaginator = createSelector(
   ordersFeatureSelector,
   (state) => state.pagination
 );
+
+export const selectOrder = createSelector(ordersFeatureSelector, (state) =>
+  state[ORDERS_FEATURE].find((order) => order.id === state.selectedId)
+);
