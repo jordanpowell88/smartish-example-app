@@ -1,3 +1,4 @@
+import * as customerActions from './customer.actions';
 import * as customersSelectors from './customers.selectors';
 export { Customer } from './customer';
 export {
@@ -8,4 +9,4 @@ export {
 export { CustomersEffects } from './customers.effects';
 export { CustomersService } from './customers.service';
 export { CustomersStoreModule } from './customers-store.module';
-export { customersSelectors };
+export { customersSelectors, customerActions };

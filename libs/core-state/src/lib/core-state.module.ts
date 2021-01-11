@@ -9,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { RouterEffects } from './router.effects';
 
 @NgModule({
   declarations: [],
@@ -25,7 +26,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         strictStateImmutability: true,
       },
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([RouterEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument(),
   ],

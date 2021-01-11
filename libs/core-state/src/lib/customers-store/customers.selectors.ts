@@ -14,3 +14,11 @@ export const selectPaginator = createSelector(
   customersFeatureSelector,
   (state) => state.pagination
 );
+
+export const selectCustomer = createSelector(
+  customersFeatureSelector,
+  (state) =>
+    state[CUSTOMERS_FEATURE].find(
+      (customer) => customer.id === state.selectedId
+    )
+);

@@ -14,14 +14,12 @@ import {
   updateProductSuccess,
 } from './product.actions';
 import { of } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Injectable()
 export class ProductEffects {
   constructor(
     private readonly actions$: Actions,
-    private readonly productService: ProductService,
-    private readonly router: Router
+    private readonly productService: ProductService
   ) {}
 
   setSelectedProductFromRoute$ = createEffect(() =>
@@ -62,14 +60,5 @@ export class ProductEffects {
         )
       )
     )
-  );
-
-  routeToCatalogOnProductSaveSuccess$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(updateProductSuccess),
-        map(() => this.router.navigate(['/catalog']))
-      ),
-    { dispatch: false }
   );
 }
