@@ -1,6 +1,6 @@
 <h1>Dashboard</h1>
 <h4>Welcome to Briebug Smartish Store Example</h4>
 
-<bb-smartish-dashboard-preview *ngFor="let preview of previews$ | async" [title]="preview.title" [subtitle]="preview.subtitle" [total]="preview.total">
+<bb-smartish-dashboard-preview *ngFor="let preview of previews$ | async" [preview]="preview">
     
 </bb-smartish-dashboard-preview>
