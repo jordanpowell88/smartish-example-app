@@ -1,29 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { environment } from 'apps/api/src/environments/environment';
+import { Observable } from 'rxjs';
 import { Order } from './order';
 
 @Injectable()
 export class OrdersService {
+  private apiUrl = `${environment.baseUrl}/orders`;
+
   constructor(private readonly http: HttpClient) {}
 
   loadAll(): Observable<Order[]> {
-    return of([]);
+    return this.http.get<Order[]>(`${this.apiUrl}`);
   }
 
-  load(id: string): Observable<Order> {
-    return of({} as Order);
+  load(orderId: string): Observable<Order> {
+    return this.http.get<Order>(`${this.apiUrl}/${orderId}`);
   }
 
   create(order: Order): Observable<Order> {
-    return of(order);
+    return this.http.post<Order>(`${this.apiUrl}`, order);
   }
 
   update(order: Order): Observable<Order> {
-    return of(order);
+    return this.http.put<Order>(`${this.apiUrl}/${order.id}`, order);
   }
 
-  delete(id: string): Observable<Order> {
-    return of({} as Order);
+  delete(orderId: string): Observable<Order> {
+    return this.http.delete<Order>(`${this.apiUrl}/${orderId}`);
   }
 }
