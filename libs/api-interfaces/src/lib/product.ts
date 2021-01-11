@@ -9,10 +9,11 @@ export interface Photo {
 
 export interface Product {
   sku: string;
-  size: Size;
+  sizes: Size[];
   quantity: number;
   name: string;
   description: string;
   photos: Photo[];
   status: Status;
+  price: number;
 }

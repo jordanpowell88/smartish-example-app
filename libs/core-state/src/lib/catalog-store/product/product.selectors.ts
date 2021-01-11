@@ -16,3 +16,14 @@ export const selectPaginator = createSelector(
   productFeatureSelector,
   (state) => state.pagination
 );
+
+export const selectProduct = createSelector(productFeatureSelector, (state) =>
+  state[PRODUCT_FEATURE_SLICE].find(
+    (product) => product.sku === state.selectedId
+  )
+);
+
+export const selectSizes = createSelector(
+  selectProduct,
+  (product) => product.sizes
+);

@@ -1,3 +1,4 @@
+import * as productActions from './product.actions';
 import * as productSelectors from './product.selectors';
 export {
   PRODUCT_FEATURE_SLICE,
@@ -8,4 +9,4 @@ export {
 export { Product } from './product';
 export { ProductEffects } from './product.effects';
 export { ProductService } from './product.service';
-export { productSelectors };
+export { productSelectors, productActions };
