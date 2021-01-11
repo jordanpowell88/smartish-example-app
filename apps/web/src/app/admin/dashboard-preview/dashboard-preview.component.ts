@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DashboardPreview } from './dashboard-preview';
 
 @Component({
   selector: 'bb-smartish-dashboard-preview',
@@ -6,7 +7,5 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-preview.component.scss'],
 })
 export class DashboardPreviewComponent {
-  @Input() title = '';
-  @Input() subtitle = '';
-  @Input() total = 0;
+  @Input() preview: DashboardPreview;
 }

@@ -18,16 +18,19 @@ const selectDashboardPreviews = createSelector(
       title: 'Orders',
       subtitle: 'Today',
       total: orders.length,
+      url: '/orders',
     },
     {
       title: 'Customers',
       subtitle: 'Today',
       total: customers.length,
+      url: '/customers',
     },
     {
       title: 'Products',
       subtitle: 'Today',
       total: products.length,
+      url: '/catalog',
     },
   ]
 );
