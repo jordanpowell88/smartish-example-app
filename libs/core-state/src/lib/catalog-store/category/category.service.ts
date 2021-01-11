@@ -1,29 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { environment } from 'apps/api/src/environments/environment';
+import { Observable } from 'rxjs';
 import { Category } from './category';
 
 @Injectable()
 export class CategoryService {
+  private apiUrl = `${environment.baseUrl}/category`;
+
   constructor(private readonly http: HttpClient) {}
 
   loadAll(): Observable<Category[]> {
-    return of([]);
+    return this.http.get<Category[]>(`${this.apiUrl}`);
   }
 
-  load(id: string): Observable<Category> {
-    return of({} as Category);
+  load(categoryId: string): Observable<Category> {
+    return this.http.get<Category>(`${this.apiUrl}/${categoryId}`);
   }
 
   create(category: Category): Observable<Category> {
-    return of(category);
+    return this.http.post<Category>(`${this.apiUrl}`, category);
   }
 
   update(category: Category): Observable<Category> {
-    return of(category);
+    return this.http.put<Category>(`${this.apiUrl}/${category.name}`, category);
   }
 
-  delete(id: string): Observable<Category> {
-    return of({} as Category);
+  delete(categoryId: string): Observable<Category> {
+    return this.http.delete<Category>(`${this.apiUrl}/${categoryId}`);
   }
 }

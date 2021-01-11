@@ -1,29 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { environment } from 'apps/api/src/environments/environment';
+import { Observable } from 'rxjs';
 import { BillingInvoice } from './billing-invoice';
 
 @Injectable()
 export class BillingService {
+  private apiUrl = `${environment.baseUrl}/billings`;
+
   constructor(private readonly http: HttpClient) {}
 
   loadAll(): Observable<BillingInvoice[]> {
-    return of([]);
+    return this.http.get<BillingInvoice[]>(`${this.apiUrl}`);
   }
 
-  load(id: string): Observable<BillingInvoice> {
-    return of({} as BillingInvoice);
+  load(billingInvoiceId: string): Observable<BillingInvoice> {
+    return this.http.get<BillingInvoice>(`${this.apiUrl}/${billingInvoiceId}`);
   }
 
   create(billingInvoice: BillingInvoice): Observable<BillingInvoice> {
-    return of(billingInvoice);
+    return this.http.post<BillingInvoice>(`${this.apiUrl}`, billingInvoice);
   }
 
   update(billingInvoice: BillingInvoice): Observable<BillingInvoice> {
-    return of(billingInvoice);
+    return this.http.put<BillingInvoice>(
+      `${this.apiUrl}/${billingInvoice}`,
+      billingInvoice
+    );
   }
 
-  delete(id: string): Observable<BillingInvoice> {
-    return of({} as BillingInvoice);
+  delete(billingInvoiceId: string): Observable<BillingInvoice> {
+    return this.http.delete<BillingInvoice>(
+      `${this.apiUrl}/${billingInvoiceId}`
+    );
   }
 }
