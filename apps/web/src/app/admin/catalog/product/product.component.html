@@ -12,6 +12,7 @@
     <mat-card>
         <mat-card-content>
             <mat-icon>more_vert</mat-icon>
+            <h3>Description:</h3>
             <p>{{ product.description }}</p>
 
             <h3>Sku: {{ product.sku }}</h3>
@@ -28,6 +29,8 @@
             <div>
                 <img *ngFor="let photo of product.photos" [src]="photo.source" [alt]="photo.title" />
             </div>
+
+            <button mat-raised-button color="primary" (click)="save(product)">Save</button>
 
         </mat-card-content>
     </mat-card>
