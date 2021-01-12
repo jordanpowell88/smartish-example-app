@@ -17,7 +17,7 @@ export const selectError = createSelector(
 
 export const selectAllBillings = createSelector(
   billingFeatureSelector,
-  (state) => state.billingInvoice
+  (state) => state[BILLINGS_FEATURE]
 );
 
 export const selectPaginator = createSelector(
@@ -26,5 +26,5 @@ export const selectPaginator = createSelector(
 );
 
 export const selectBill = createSelector(billingFeatureSelector, (state) =>
-  state.billingInvoice.find((bill) => bill.id === state.selectedId)
+  state[BILLINGS_FEATURE].find((bill) => bill.id === state.selectedId)
 );

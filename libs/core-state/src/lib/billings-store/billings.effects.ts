@@ -50,10 +50,10 @@ export class BillingsEffects {
   billingPageSaveButtonClicked$ = createEffect(() =>
     this.actions$.pipe(
       ofType(updateBillingInvoice),
-      map((action) => action.billingInvoice),
-      exhaustMap((billingInvoice) =>
-        this.billingService.update(billingInvoice).pipe(
-          map((billing) => updateBillingInvoiceSuccess({ billing })),
+      map((action) => action.invoice),
+      exhaustMap((invoice) =>
+        this.billingService.update(invoice).pipe(
+          map((invoice) => updateBillingInvoiceSuccess({ invoice })),
           catchError((error) => of(updateBillingInvoiceFailed({ error })))
         )
       )

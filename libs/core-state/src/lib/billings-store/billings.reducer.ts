@@ -12,13 +12,13 @@ import {
 export const BILLINGS_FEATURE = 'billings';
 
 export interface BillingsState extends BaseState {
-  billingInvoice: BillingInvoice[];
+  [BILLINGS_FEATURE]: BillingInvoice[];
   selectedId?: number;
   pagination: Paginator;
 }
 
 const initialState: BillingsState = {
-  billingInvoice: [
+  [BILLINGS_FEATURE]: [
     {
       id: 1,
       to: {
@@ -52,11 +52,11 @@ const reducer = createReducer(
     ...state,
     selectedId,
   })),
-  on(updateBillingInvoice, (state, { billingInvoice }) => ({
+  on(updateBillingInvoice, (state, { invoice }) => ({
     ...state,
     isLoading: true,
   })),
-  on(updateBillingInvoiceSuccess, (state, { billing }) => ({
+  on(updateBillingInvoiceSuccess, (state, { invoice }) => ({
     ...state,
     isLoading: false,
     error: '',

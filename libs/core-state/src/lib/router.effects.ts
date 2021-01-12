@@ -6,6 +6,7 @@ import { updateBillingInvoiceSuccess } from './billings-store/billings.actions';
 import { updateProductSuccess } from './catalog-store/product/product.actions';
 import { updateCustomerSuccess } from './customers-store/customer.actions';
 import { updateOrderSuccess } from './orders-store/orders.actions';
+import { updateShippingInvoiceSuccess } from './shipping-store/shipping.actions';
 
 @Injectable()
 export class RouterEffects {
@@ -46,6 +47,15 @@ export class RouterEffects {
       this.actions$.pipe(
         ofType(updateBillingInvoiceSuccess),
         map(() => this.router.navigate(['/billing']))
+      ),
+    { dispatch: false }
+  );
+
+  routeToShippingOnShippingSaveSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(updateShippingInvoiceSuccess),
+        map(() => this.router.navigate(['/shipping']))
       ),
     { dispatch: false }
   );
