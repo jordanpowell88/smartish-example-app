@@ -2,7 +2,12 @@ import { Paginator } from '@bb-smartish/api-interfaces';
 import { Action, createReducer, on } from '@ngrx/store';
 import { BaseState } from '../base-state';
 import { Customer } from './customer';
-import { setSelectedCustomerId } from './customer.actions';
+import {
+  setSelectedCustomerId,
+  updateCustomer,
+  updateCustomerFailed,
+  updateCustomerSuccess,
+} from './customer.actions';
 
 export const CUSTOMERS_FEATURE = 'customers';
 
@@ -59,6 +64,20 @@ const reducer = createReducer(
   on(setSelectedCustomerId, (state, { selectedId }) => ({
     ...state,
     selectedId,
+  })),
+  on(updateCustomer, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(updateCustomerSuccess, (state, { customer }) => ({
+    ...state,
+    isLoading: false,
+    error: '',
+  })),
+  on(updateCustomerFailed, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
   }))
 );
 

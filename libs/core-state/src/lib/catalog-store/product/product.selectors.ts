@@ -7,6 +7,16 @@ const productFeatureSelector = createSelector(
   (state) => state.product
 );
 
+export const selectIsSLoading = createSelector(
+  productFeatureSelector,
+  (state) => state.isLoading
+);
+
+export const selectError = createSelector(
+  productFeatureSelector,
+  (state) => state.error
+);
+
 export const selectAllProducts = createSelector(
   productFeatureSelector,
   (state) => state[PRODUCT_FEATURE_SLICE]
