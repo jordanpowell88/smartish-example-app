@@ -2,7 +2,12 @@ import { Paginator } from '@bb-smartish/api-interfaces';
 import { Action, createReducer, on } from '@ngrx/store';
 import { BaseState } from '../../base-state';
 import { Product } from './product';
-import { setSelectedProductId } from './product.actions';
+import {
+  setSelectedProductId,
+  updateProduct,
+  updateProductFailed,
+  updateProductSuccess,
+} from './product.actions';
 
 export const PRODUCT_FEATURE_SLICE = 'product';
 
@@ -65,6 +70,20 @@ const reducer = createReducer(
   on(setSelectedProductId, (state, { selectedId }) => ({
     ...state,
     selectedId,
+  })),
+  on(updateProduct, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(updateProductSuccess, (state, { product }) => ({
+    ...state,
+    isLoading: false,
+    error: '',
+  })),
+  on(updateProductFailed, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
   }))
 );
 
