@@ -8,12 +8,12 @@ export const setSelectedBillingInvoiceId = createAction(
 
 export const updateBillingInvoice = createAction(
   '[BILLING PAGE] Update Billing Invoice',
-  props<{ billingInvoice: BillingInvoice }>()
+  props<{ invoice: BillingInvoice }>()
 );
 
 export const updateBillingInvoiceSuccess = createAction(
   '[BILLING API] Update Billing Success',
-  props<{ billing: BillingInvoice }>()
+  props<{ invoice: BillingInvoice }>()
 );
 
 export const updateBillingInvoiceFailed = createAction(

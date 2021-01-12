@@ -1,3 +1,7 @@
 import { Invoice } from '@bb-smartish/api-interfaces';
 
-export interface ShippingInvoice extends Invoice {}
+export type ShippingStatus = 'Shipped' | 'Not Shipped';
+
+export interface ShippingInvoice extends Invoice {
+  status: ShippingStatus;
+}

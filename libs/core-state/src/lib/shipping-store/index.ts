@@ -1,3 +1,5 @@
+import * as shippingActions from './shipping.actions';
+import * as shippingSelectors from './shipping.selectors';
 export { ShippingInvoice } from './shipping-invoice';
 export {
   SHIPPING_FEATURE,
@@ -7,3 +9,4 @@ export {
 export { ShippingEffects } from './shipping.effects';
 export { ShippingService } from './shipping.service';
 export { ShippingStoreModule } from './shipping-store.module';
+export { shippingActions, shippingSelectors };

@@ -3,6 +3,7 @@ import { billingSelectors } from './billings-store';
 import { productSelectors } from './catalog-store/product';
 import { customersSelectors } from './customers-store';
 import { ordersSelectors } from './orders-store';
+import { shippingSelectors } from './shipping-store';
 
 export const selectIsLoading: MemoizedSelector<
   object,
@@ -12,16 +13,19 @@ export const selectIsLoading: MemoizedSelector<
   customersSelectors.selectIsLoading,
   ordersSelectors.selectIsLoading,
   billingSelectors.selectIsLoading,
+  shippingSelectors.selectIsLoading,
   (
     productIsLoading: boolean,
     customersIsLoading: boolean,
     ordersIsLoading: boolean,
-    billingIsLoading: boolean
+    billingIsLoading: boolean,
+    shippingIsLoading: boolean
   ) =>
     productIsLoading ||
     customersIsLoading ||
     ordersIsLoading ||
-    billingIsLoading
+    billingIsLoading ||
+    shippingIsLoading
 );
 
 export const selectError: MemoizedSelector<object, string> = createSelector(
@@ -29,10 +33,17 @@ export const selectError: MemoizedSelector<object, string> = createSelector(
   customersSelectors.selectError,
   ordersSelectors.selectError,
   billingSelectors.selectError,
+  shippingSelectors.selectError,
   (
     productError: string,
     customersError: string,
     ordersError: string,
-    billingError: string
-  ) => productError || customersError || ordersError || billingError
+    billingError: string,
+    shippingError: string
+  ) =>
+    productError ||
+    customersError ||
+    ordersError ||
+    billingError ||
+    shippingError
 );

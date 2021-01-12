@@ -6,6 +6,7 @@ import { billingActions } from './billings-store';
 import { productActions } from './catalog-store';
 import { customerActions } from './customers-store';
 import { orderActions } from './orders-store';
+import { shippingActions } from './shipping-store';
 
 @Injectable()
 export class SnackBarEffects {
@@ -22,7 +23,8 @@ export class SnackBarEffects {
           productActions.saveProductFailed,
           customerActions.updateCustomerFailed,
           orderActions.updateOrderFailed,
-          billingActions.updateBillingInvoiceFailed
+          billingActions.updateBillingInvoiceFailed,
+          shippingActions.updateShippingInvoiceFailed
         ),
         map((action) => action.error),
         map((error) =>

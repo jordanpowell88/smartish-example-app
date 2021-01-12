@@ -16,9 +16,7 @@ export class BillComponent {
 
   constructor(private readonly store: Store) {}
 
-  save(billingInvoice: BillingInvoice) {
-    this.store.dispatch(
-      billingActions.updateBillingInvoice({ billingInvoice })
-    );
+  save(invoice: BillingInvoice) {
+    this.store.dispatch(billingActions.updateBillingInvoice({ invoice }));
   }
 }
