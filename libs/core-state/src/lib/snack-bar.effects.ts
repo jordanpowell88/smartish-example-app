@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { productActions } from './catalog-store';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map } from 'rxjs/operators';
+import { billingActions } from './billings-store';
+import { productActions } from './catalog-store';
 import { customerActions } from './customers-store';
 import { orderActions } from './orders-store';
 
@@ -20,7 +21,8 @@ export class SnackBarEffects {
           productActions.updateProductFailed,
           productActions.saveProductFailed,
           customerActions.updateCustomerFailed,
-          orderActions.updateOrderFailed
+          orderActions.updateOrderFailed,
+          billingActions.updateBillingInvoiceFailed
         ),
         map((action) => action.error),
         map((error) =>
