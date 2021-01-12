@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map } from 'rxjs/operators';
+import { updateBillingInvoiceSuccess } from './billings-store/billings.actions';
 import { updateProductSuccess } from './catalog-store/product/product.actions';
 import { updateCustomerSuccess } from './customers-store/customer.actions';
 import { updateOrderSuccess } from './orders-store/orders.actions';
@@ -36,6 +37,15 @@ export class RouterEffects {
       this.actions$.pipe(
         ofType(updateOrderSuccess),
         map(() => this.router.navigate(['/orders']))
+      ),
+    { dispatch: false }
+  );
+
+  routeToBillingsOnBillingSaveSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(updateBillingInvoiceSuccess),
+        map(() => this.router.navigate(['/billing']))
       ),
     { dispatch: false }
   );
