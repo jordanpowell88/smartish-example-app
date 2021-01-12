@@ -10,11 +10,14 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RouterEffects } from './router.effects';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackBarEffects } from './snack-bar.effects';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    MatSnackBarModule,
     BillingsStoreModule,
     CatalogStoreModule,
     CustomersStoreModule,
@@ -26,7 +29,7 @@ import { RouterEffects } from './router.effects';
         strictStateImmutability: true,
       },
     }),
-    EffectsModule.forRoot([RouterEffects]),
+    EffectsModule.forRoot([RouterEffects, SnackBarEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument(),
   ],
