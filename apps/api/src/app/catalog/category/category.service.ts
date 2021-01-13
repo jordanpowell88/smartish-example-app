@@ -1,11 +1,35 @@
 import { Injectable } from '@nestjs/common';
 import { Category } from './category';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
+import { Repository } from 'typeorm';
+import { from, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
-export class CategoryService extends TypeOrmCrudService<Category> {
-  constructor(@InjectRepository(Category) readonly repo) {
-    super(repo);
+export class CategoryService {
+  constructor(
+    @InjectRepository(Category) readonly repo: Repository<Category>
+  ) {}
+
+  loadAll(): Observable<Category[]> {
+    return from(this.repo.find());
+  }
+
+  load(id: number): Observable<Category> {
+    return from(this.repo.findOne(id));
+  }
+
+  create(category: Category): Observable<Category> {
+    return from(this.repo.save(category));
+  }
+
+  update(category: Category): Observable<Category> {
+    return from(this.create(category));
+  }
+
+  delete(id: number): Observable<Category> {
+    return from(
+      this.load(id).pipe(tap((category) => this.repo.remove(category)))
+    );
   }
 }

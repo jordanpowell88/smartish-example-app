@@ -24,7 +24,7 @@ export class BillingService {
 
   update(billingInvoice: BillingInvoice): Observable<BillingInvoice> {
     return this.http.put<BillingInvoice>(
-      `${this.apiUrl}/${billingInvoice}`,
+      `${this.apiUrl}/${billingInvoice.id}`,
       billingInvoice
     );
   }

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { MockRepository } from '../../mock-repository.spec';
+import { Repository } from 'typeorm';
 import { Category } from './category';
 import { CategoryService } from './category.service';
 
@@ -11,7 +11,7 @@ describe('CategoryService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         CategoryService,
-        { provide: getRepositoryToken(Category), useClass: MockRepository },
+        { provide: getRepositoryToken(Category), useClass: Repository },
       ],
     }).compile();
 

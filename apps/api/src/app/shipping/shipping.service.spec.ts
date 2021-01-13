@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { MockRepository } from '../mock-repository.spec';
+import { Repository } from 'typeorm';
 import { ShippingInvoice } from './shipping-invoice';
 import { ShippingService } from './shipping.service';
 
@@ -13,7 +13,7 @@ describe('ShippingService', () => {
         ShippingService,
         {
           provide: getRepositoryToken(ShippingInvoice),
-          useClass: MockRepository,
+          useClass: Repository,
         },
       ],
     }).compile();

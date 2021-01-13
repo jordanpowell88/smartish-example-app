@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { MockRepository } from '../../mock-repository.spec';
+import { Repository } from 'typeorm';
 import { Product } from './product';
 import { ProductController } from './product.controller';
 import { ProductService } from './product.service';
@@ -13,7 +13,7 @@ describe('ProductController', () => {
       controllers: [ProductController],
       providers: [
         ProductService,
-        { provide: getRepositoryToken(Product), useClass: MockRepository },
+        { provide: getRepositoryToken(Product), useClass: Repository },
       ],
     }).compile();
 

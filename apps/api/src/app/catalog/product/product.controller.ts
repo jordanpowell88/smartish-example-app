@@ -1,14 +1,24 @@
-import { Controller } from '@nestjs/common';
-import { Crud, CrudController } from '@nestjsx/crud';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
+import { Observable } from 'rxjs';
 import { Product } from './product';
 import { ProductService } from './product.service';
 
-@Crud({
-  model: {
-    type: Product,
-  },
-})
 @Controller('product')
-export class ProductController implements CrudController<Product> {
-  constructor(public readonly service: ProductService) {}
+export class ProductController {
+  constructor(private readonly service: ProductService) {}
+
+  @Get()
+  loadAll(): Observable<Product[]> {
+    return this.service.loadAll();
+  }
+
+  @Post()
+  create(@Body() product: Product): Observable<Product> {
+    return this.service.create(product);
+  }
+
+  @Put(':id')
+  update(@Body() product: Product): Observable<Product> {
+    return this.service.update(product);
+  }
 }
