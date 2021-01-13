@@ -71,7 +71,10 @@
             "tsConfig": "apps/web/tsconfig.app.json",
             "aot": true,
             "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
-            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "apps/web/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/web/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -242,6 +245,32 @@
           "outputs": ["coverage/libs/material"],
           "options": {
             "jestConfig": "libs/material/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "operators": {
+      "projectType": "library",
+      "root": "libs/operators",
+      "sourceRoot": "libs/operators/src",
+      "prefix": "bb-smartish",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/operators/tsconfig.lib.json",
+              "libs/operators/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/operators/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/operators"],
+          "options": {
+            "jestConfig": "libs/operators/jest.config.js",
             "passWithNoTests": true
           }
         }

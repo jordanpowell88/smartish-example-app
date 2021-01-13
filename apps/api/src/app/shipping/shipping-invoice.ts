@@ -1,9 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { Invoice, Person } from '@bb-smartish/api-interfaces';
+import { Person } from '@bb-smartish/api-interfaces';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class ShippingInvoice implements Invoice {
-  @PrimaryGeneratedColumn() id: number;
+export class ShippingInvoice {
+  @PrimaryGeneratedColumn() id: string;
 
   @Column() date: Date;
 

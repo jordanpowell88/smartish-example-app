@@ -1,42 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { ROUTER_NAVIGATED } from '@ngrx/router-store';
 import {
-  RouterNavigatedAction,
-  ROUTER_NAVIGATED,
-  SerializedRouterStateSnapshot,
-} from '@ngrx/router-store';
-import { of, pipe } from 'rxjs';
-import { catchError, exhaustMap, filter, map } from 'rxjs/operators';
+  extractVerifiedParameter,
+  routeIncludesPath,
+} from 'libs/operators/src';
+import { of } from 'rxjs';
+import { catchError, exhaustMap, map } from 'rxjs/operators';
 import { BillingService } from './billing.service';
 import {
+  getBillingInvoices,
+  getBillingInvoicesFailed,
+  getBillingInvoicesSuccess,
   setSelectedBillingInvoiceId,
   updateBillingInvoice,
   updateBillingInvoiceFailed,
   updateBillingInvoiceSuccess,
 } from './billings.actions';
-
-// TODO EXTRACT THESE TO SHARED LIB AND USE IN OTHER FEATURES
-export const routeIncludesPath = (url: string) =>
-  pipe(
-    map((r: RouterNavigatedAction) => r.payload.routerState),
-    filter((routerState: SerializedRouterStateSnapshot) =>
-      routerState.url.includes(url)
-    )
-  );
-
-export const extractVerifiedParameter = (param: string) =>
-  pipe(
-    map(
-      ({
-        root: {
-          firstChild: {
-            firstChild: { params },
-          },
-        },
-      }) => params[param]
-    ),
-    filter((p) => !!p)
-  );
 
 @Injectable()
 export class BillingsEffects {
@@ -45,14 +25,32 @@ export class BillingsEffects {
     private readonly billingService: BillingService
   ) {}
 
+  getBillingInvoicesWhenRoutedToBilling$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ROUTER_NAVIGATED),
+      routeIncludesPath('/billing'),
+      map(() => getBillingInvoices())
+    )
+  );
+
+  getAllBillingInvoices$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getBillingInvoices),
+      exhaustMap(() =>
+        this.billingService.loadAll().pipe(
+          map((billings) => getBillingInvoicesSuccess({ billings })),
+          catchError((error) => of(getBillingInvoicesFailed({ error })))
+        )
+      )
+    )
+  );
+
   setSelectedBillingInvoiceFromRoute$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROUTER_NAVIGATED),
       routeIncludesPath('/billing'),
       extractVerifiedParameter('billingId'),
-      map((billingId) =>
-        setSelectedBillingInvoiceId({ selectedId: Number(billingId) })
-      )
+      map((selectedId) => setSelectedBillingInvoiceId({ selectedId }))
     )
   );
 

@@ -5,9 +5,16 @@ import {
   ROUTER_NAVIGATED,
   SerializedRouterStateSnapshot,
 } from '@ngrx/router-store';
+import {
+  extractVerifiedParameter,
+  routeIncludesPath,
+} from 'libs/operators/src';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, filter, map } from 'rxjs/operators';
 import {
+  getShippingInvoices,
+  getShippingInvoicesFailed,
+  getShippingInvoicesSuccess,
   setSelectedShippingInvoiceId,
   updateShippingInvoice,
   updateShippingInvoiceFailed,
@@ -22,28 +29,32 @@ export class ShippingEffects {
     private readonly shippingService: ShippingService
   ) {}
 
+  getShippingInvoicesWhenRoutedToShipping$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ROUTER_NAVIGATED),
+      routeIncludesPath('/shipping'),
+      map(() => getShippingInvoices())
+    )
+  );
+
+  getAllShippingInvoices$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getShippingInvoices),
+      exhaustMap(() =>
+        this.shippingService.loadAll().pipe(
+          map((shipping) => getShippingInvoicesSuccess({ shipping })),
+          catchError((error) => of(getShippingInvoicesFailed({ error })))
+        )
+      )
+    )
+  );
+
   setSelectedShippingInvoiceFromRoute$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROUTER_NAVIGATED),
-      map((r: RouterNavigatedAction) => r.payload.routerState),
-      filter((routerState: SerializedRouterStateSnapshot) =>
-        routerState.url.includes('/shipping')
-      ),
-      map(
-        ({
-          root: {
-            firstChild: {
-              firstChild: {
-                params: { shippingId },
-              },
-            },
-          },
-        }) => shippingId
-      ),
-      filter((shippingId) => !!shippingId),
-      map((shippingId) =>
-        setSelectedShippingInvoiceId({ selectedId: Number(shippingId) })
-      )
+      routeIncludesPath('/shipping'),
+      extractVerifiedParameter('shippingId'),
+      map((selectedId) => setSelectedShippingInvoiceId({ selectedId }))
     )
   );
 

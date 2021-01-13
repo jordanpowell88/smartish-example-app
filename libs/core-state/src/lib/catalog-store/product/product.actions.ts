@@ -6,6 +6,18 @@ export const setSelectedProductId = createAction(
   props<{ selectedId: string }>()
 );
 
+export const getProducts = createAction('[CATALOG PAGE] Get All Products');
+
+export const getProductsSuccess = createAction(
+  '[PRODUCT API] Get All Products Success',
+  props<{ products: Product[] }>()
+);
+
+export const getProductsFailed = createAction(
+  '[PRODUCT API] Get All Products Failed',
+  props<{ error: string }>()
+);
+
 export const updateProduct = createAction(
   '[PRODUCT PAGE] Update Product',
   props<{ product: Product }>()

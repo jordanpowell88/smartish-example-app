@@ -3,6 +3,9 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { BaseState } from '../base-state';
 import { Customer } from './customer';
 import {
+  getCustomers,
+  getCustomersFailed,
+  getCustomersSuccess,
   setSelectedCustomerId,
   updateCustomer,
   updateCustomerFailed,
@@ -13,43 +16,12 @@ export const CUSTOMERS_FEATURE = 'customers';
 
 export interface CustomersState extends BaseState {
   [CUSTOMERS_FEATURE]: Customer[];
-  selectedId?: number;
+  selectedId?: string;
   pagination: Paginator;
 }
 
 const initialState: CustomersState = {
-  [CUSTOMERS_FEATURE]: [
-    {
-      id: 1,
-      firstName: 'Jon',
-      lastName: 'Rista',
-      phone: '(720) 233-8565',
-      address: {
-        addressLine1: '123 None Your Business',
-        city: 'Aurora',
-        state: 'Colorado',
-        zip: 80010,
-      },
-      email: 'jon.rista@briebug.com',
-      totalOrders: 2,
-      totalSpent: 105.5,
-    },
-    {
-      id: 2,
-      firstName: 'Jordan',
-      lastName: 'Powell',
-      phone: '937-726-9220',
-      address: {
-        addressLine1: '903 Carnation Dr',
-        city: 'Wapakoneta',
-        state: 'Ohio',
-        zip: 45895,
-      },
-      email: 'jordan.powell@briebug.com',
-      totalOrders: 1,
-      totalSpent: 50,
-    },
-  ],
+  [CUSTOMERS_FEATURE]: [],
   pagination: {
     pageIndex: 0,
     length: 1,
@@ -64,6 +36,18 @@ const reducer = createReducer(
   on(setSelectedCustomerId, (state, { selectedId }) => ({
     ...state,
     selectedId,
+  })),
+  on(getCustomers, (state) => ({ ...state, isLoading: true })),
+  on(getCustomersSuccess, (state, { customers }) => ({
+    ...state,
+    customers,
+    isLoading: false,
+    error: '',
+  })),
+  on(getCustomersFailed, (state, { error }) => ({
+    ...state,
+    error,
+    isLoading: false,
   })),
   on(updateCustomer, (state) => ({
     ...state,

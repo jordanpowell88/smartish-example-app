@@ -7,12 +7,12 @@ const productFeatureSelector = createSelector(
   (state) => state.product
 );
 
-export const selectIsSLoading = createSelector(
+export const selectProductIsLoading = createSelector(
   productFeatureSelector,
   (state) => state.isLoading
 );
 
-export const selectError = createSelector(
+export const selectProductError = createSelector(
   productFeatureSelector,
   (state) => state.error
 );

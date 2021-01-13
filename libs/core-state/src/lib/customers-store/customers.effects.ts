@@ -5,9 +5,16 @@ import {
   ROUTER_NAVIGATED,
   SerializedRouterStateSnapshot,
 } from '@ngrx/router-store';
+import {
+  extractVerifiedParameter,
+  routeIncludesPath,
+} from 'libs/operators/src';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, filter, map } from 'rxjs/operators';
 import {
+  getCustomers,
+  getCustomersFailed,
+  getCustomersSuccess,
   setSelectedCustomerId,
   updateCustomer,
   updateCustomerFailed,
@@ -22,28 +29,32 @@ export class CustomersEffects {
     private readonly customersService: CustomersService
   ) {}
 
+  getCustomersWhenRoutedToCustomers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ROUTER_NAVIGATED),
+      routeIncludesPath('/customers'),
+      map(() => getCustomers())
+    )
+  );
+
+  getAllCustomers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getCustomers),
+      exhaustMap(() =>
+        this.customersService.loadAll().pipe(
+          map((customers) => getCustomersSuccess({ customers })),
+          catchError((error) => of(getCustomersFailed({ error })))
+        )
+      )
+    )
+  );
+
   setSelectedCustomerFromRoute$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROUTER_NAVIGATED),
-      map((r: RouterNavigatedAction) => r.payload.routerState),
-      filter((routerState: SerializedRouterStateSnapshot) =>
-        routerState.url.includes('/customers')
-      ),
-      map(
-        ({
-          root: {
-            firstChild: {
-              firstChild: {
-                params: { customerId },
-              },
-            },
-          },
-        }) => customerId
-      ),
-      filter((customerId) => !!customerId),
-      map((customerId) =>
-        setSelectedCustomerId({ selectedId: Number(customerId) })
-      )
+      routeIncludesPath('/customers'),
+      extractVerifiedParameter('customerId'),
+      map((selectedId) => setSelectedCustomerId({ selectedId }))
     )
   );
 

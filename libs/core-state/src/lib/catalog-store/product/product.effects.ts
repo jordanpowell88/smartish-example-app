@@ -8,12 +8,19 @@ import {
 import { ProductService } from './product.service';
 import { catchError, exhaustMap, filter, map } from 'rxjs/operators';
 import {
+  getProducts,
+  getProductsFailed,
+  getProductsSuccess,
   setSelectedProductId,
   updateProduct,
   updateProductFailed,
   updateProductSuccess,
 } from './product.actions';
 import { of } from 'rxjs';
+import {
+  extractVerifiedParameter,
+  routeIncludesPath,
+} from 'libs/operators/src';
 
 @Injectable()
 export class ProductEffects {
@@ -22,30 +29,32 @@ export class ProductEffects {
     private readonly productService: ProductService
   ) {}
 
+  getProductsWhenRoutedToCatalog$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ROUTER_NAVIGATED),
+      routeIncludesPath('/catalog'),
+      map(() => getProducts())
+    )
+  );
+
+  getAllProducts$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getProducts),
+      exhaustMap(() =>
+        this.productService.loadAll().pipe(
+          map((products) => getProductsSuccess({ products })),
+          catchError((error) => of(getProductsFailed({ error })))
+        )
+      )
+    )
+  );
+
   setSelectedProductFromRoute$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROUTER_NAVIGATED),
-      map((r: RouterNavigatedAction) => r.payload.routerState),
-      filter((routerState: SerializedRouterStateSnapshot) =>
-        routerState.url.includes('/catalog')
-      ),
-      map(
-        ({
-          root: {
-            firstChild: {
-              firstChild: {
-                params: { productId },
-              },
-            },
-          },
-        }) => productId
-      ),
-      filter((productId) => !!productId),
-      map((productId) =>
-        setSelectedProductId({
-          selectedId: productId,
-        })
-      )
+      routeIncludesPath('/catalog'),
+      extractVerifiedParameter('productId'),
+      map((selectedId) => setSelectedProductId({ selectedId }))
     )
   );
 

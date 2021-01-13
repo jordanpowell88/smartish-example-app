@@ -5,12 +5,12 @@ const shippingFeatureSelector = createFeatureSelector<ShippingState>(
   SHIPPING_FEATURE
 );
 
-export const selectIsLoading = createSelector(
+export const selectShippingIsLoading = createSelector(
   shippingFeatureSelector,
   (state) => state.isLoading
 );
 
-export const selectError = createSelector(
+export const selectShippingError = createSelector(
   shippingFeatureSelector,
   (state) => state.error
 );

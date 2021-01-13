@@ -4,7 +4,7 @@ export type Payment = 'Paid' | 'Unpaid' | 'Refunded';
 export type Fulfillment = 'Fulfilled' | 'Unfulfilled';
 
 export interface Order {
-  id: number;
+  id: string;
   date: Date;
   customer: Customer;
   total: number;
