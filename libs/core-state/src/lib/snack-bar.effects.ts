@@ -2,11 +2,27 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map } from 'rxjs/operators';
-import { billingActions } from './billings-store';
-import { productActions } from './catalog-store';
-import { customerActions } from './customers-store';
-import { orderActions } from './orders-store';
-import { shippingActions } from './shipping-store';
+import {
+  getBillingInvoicesFailed,
+  updateBillingInvoiceFailed,
+} from './billings-store/billings.actions';
+import {
+  getProductsFailed,
+  saveProductFailed,
+  updateProductFailed,
+} from './catalog-store/product/product.actions';
+import {
+  getCustomersFailed,
+  updateCustomerFailed,
+} from './customers-store/customer.actions';
+import {
+  getOrdersFailed,
+  updateOrderFailed,
+} from './orders-store/orders.actions';
+import {
+  getShippingInvoicesFailed,
+  updateShippingInvoiceFailed,
+} from './shipping-store/shipping.actions';
 
 @Injectable()
 export class SnackBarEffects {
@@ -19,12 +35,17 @@ export class SnackBarEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          productActions.updateProductFailed,
-          productActions.saveProductFailed,
-          customerActions.updateCustomerFailed,
-          orderActions.updateOrderFailed,
-          billingActions.updateBillingInvoiceFailed,
-          shippingActions.updateShippingInvoiceFailed
+          updateProductFailed,
+          saveProductFailed,
+          updateCustomerFailed,
+          updateOrderFailed,
+          updateBillingInvoiceFailed,
+          updateShippingInvoiceFailed,
+          getBillingInvoicesFailed,
+          getProductsFailed,
+          getCustomersFailed,
+          getOrdersFailed,
+          getShippingInvoicesFailed
         ),
         map((action) => action.error),
         map((error) =>

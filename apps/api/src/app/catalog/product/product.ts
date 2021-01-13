@@ -1,9 +1,9 @@
 import { Photo, Size } from '@bb-smartish/api-interfaces';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
 @Entity()
 export class Product {
-  @PrimaryGeneratedColumn() id: number;
+  @ObjectIdColumn() id: number;
 
   @Column() sku: string;
 

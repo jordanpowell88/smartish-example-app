@@ -3,7 +3,21 @@ import { ShippingInvoice } from './shipping-invoice';
 
 export const setSelectedShippingInvoiceId = createAction(
   '[ROUTED TO SHIPPING INVOICE] Sets Shipping Invoice Id',
-  props<{ selectedId: number }>()
+  props<{ selectedId: string }>()
+);
+
+export const getShippingInvoices = createAction(
+  '[SHIPPING PAGE] Get All Shipping Invoices'
+);
+
+export const getShippingInvoicesSuccess = createAction(
+  '[SHIPPING API] Get All Shipping Invoices Success',
+  props<{ shipping: ShippingInvoice[] }>()
+);
+
+export const getShippingInvoicesFailed = createAction(
+  '[SHIPPING API] Get All Shipping Invoices Failed',
+  props<{ error: string }>()
 );
 
 export const updateShippingInvoice = createAction(

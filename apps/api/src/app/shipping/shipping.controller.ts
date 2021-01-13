@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { ShippingInvoice } from './shipping-invoice';
 import { ShippingService } from './shipping.service';
 
-@Controller('shipping')
+@Controller('shippings')
 export class ShippingController {
   constructor(private readonly service: ShippingService) {}
 

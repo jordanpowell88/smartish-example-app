@@ -3,6 +3,9 @@ import { ShippingInvoice } from './shipping-invoice';
 import { Action, createReducer, on } from '@ngrx/store';
 import { Paginator } from '@bb-smartish/api-interfaces';
 import {
+  getShippingInvoices,
+  getShippingInvoicesFailed,
+  getShippingInvoicesSuccess,
   setSelectedShippingInvoiceId,
   updateShippingInvoice,
   updateShippingInvoiceFailed,
@@ -13,31 +16,12 @@ export const SHIPPING_FEATURE = 'shipping';
 
 export interface ShippingState extends BaseState {
   [SHIPPING_FEATURE]: ShippingInvoice[];
-  selectedId?: number;
+  selectedId?: string;
   pagination: Paginator;
 }
 
 const initialState: ShippingState = {
-  [SHIPPING_FEATURE]: [
-    {
-      id: 1,
-      amount: 100,
-      date: new Date(),
-      status: 'Not Shipped',
-      to: {
-        firstName: 'Jon',
-        lastName: 'Rista',
-        email: 'jon.rista@briebug.com',
-        phone: '123-456-7890',
-        address: {
-          addressLine1: '123 Nun Ur Biznes',
-          city: 'Denver',
-          state: 'Colorado',
-          zip: 12345,
-        },
-      },
-    },
-  ],
+  [SHIPPING_FEATURE]: [],
   isLoading: false,
   pagination: {
     pageIndex: 0,
@@ -52,6 +36,18 @@ const reducer = createReducer(
   on(setSelectedShippingInvoiceId, (state, { selectedId }) => ({
     ...state,
     selectedId,
+  })),
+  on(getShippingInvoices, (state) => ({ ...state, isLoading: true })),
+  on(getShippingInvoicesSuccess, (state, { shipping }) => ({
+    ...state,
+    shipping,
+    isLoading: false,
+    error: '',
+  })),
+  on(getShippingInvoicesFailed, (state, { error }) => ({
+    ...state,
+    error,
+    isLoading: false,
   })),
   on(updateShippingInvoice, (state, { invoice }) => ({
     ...state,

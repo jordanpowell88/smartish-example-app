@@ -1,7 +1,7 @@
 import { Person } from './person';
 
 export interface Invoice {
-  id: number;
+  id: string;
   date: Date;
   amount: number;
   to: Person;

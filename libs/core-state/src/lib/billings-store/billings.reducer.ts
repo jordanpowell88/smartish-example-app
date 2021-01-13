@@ -3,6 +3,9 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { BaseState } from '../base-state';
 import { Paginator } from '@bb-smartish/api-interfaces';
 import {
+  getBillingInvoices,
+  getBillingInvoicesFailed,
+  getBillingInvoicesSuccess,
   setSelectedBillingInvoiceId,
   updateBillingInvoice,
   updateBillingInvoiceFailed,
@@ -13,30 +16,12 @@ export const BILLINGS_FEATURE = 'billings';
 
 export interface BillingsState extends BaseState {
   [BILLINGS_FEATURE]: BillingInvoice[];
-  selectedId?: number;
+  selectedId?: string;
   pagination: Paginator;
 }
 
 const initialState: BillingsState = {
-  [BILLINGS_FEATURE]: [
-    {
-      id: 1,
-      to: {
-        firstName: 'Jordan',
-        lastName: 'Powell',
-        phone: '937-726-9220',
-        address: {
-          addressLine1: '903 Carnation Dr',
-          city: 'Wapakoneta',
-          state: 'Ohio',
-          zip: 45895,
-        },
-        email: 'jordan.powell@briebug.com',
-      },
-      date: new Date(),
-      amount: 100,
-    },
-  ],
+  [BILLINGS_FEATURE]: [],
   isLoading: false,
   pagination: {
     pageIndex: 0,
@@ -52,6 +37,16 @@ const reducer = createReducer(
     ...state,
     selectedId,
   })),
+  on(getBillingInvoices, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(getBillingInvoicesSuccess, (state, { billings }) => ({
+    ...state,
+    billings,
+    isLoading: false,
+    error: '',
+  })),
   on(updateBillingInvoice, (state, { invoice }) => ({
     ...state,
     isLoading: true,
@@ -61,11 +56,15 @@ const reducer = createReducer(
     isLoading: false,
     error: '',
   })),
-  on(updateBillingInvoiceFailed, (state, { error }) => ({
-    ...state,
-    isLoading: false,
-    error,
-  }))
+  on(
+    updateBillingInvoiceFailed,
+    getBillingInvoicesFailed,
+    (state, { error }) => ({
+      ...state,
+      isLoading: false,
+      error,
+    })
+  )
 );
 
 export function billingsReducer(

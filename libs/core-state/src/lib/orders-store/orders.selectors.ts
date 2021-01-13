@@ -5,12 +5,12 @@ const ordersFeatureSelector = createFeatureSelector<OrdersState>(
   ORDERS_FEATURE
 );
 
-export const selectIsLoading = createSelector(
+export const selectOrdersIsLoading = createSelector(
   ordersFeatureSelector,
   (state) => state.isLoading
 );
 
-export const selectError = createSelector(
+export const selectOrdersError = createSelector(
   ordersFeatureSelector,
   (state) => state.error
 );

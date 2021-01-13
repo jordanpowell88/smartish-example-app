@@ -3,6 +3,9 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { BaseState } from '../base-state';
 import { Order } from './order';
 import {
+  getOrders,
+  getOrdersFailed,
+  getOrdersSuccess,
   setSelectedOrderId,
   updateOrder,
   updateOrderFailed,
@@ -13,54 +16,12 @@ export const ORDERS_FEATURE = 'orders';
 
 export interface OrdersState extends BaseState {
   [ORDERS_FEATURE]: Order[];
-  selectedId?: number;
+  selectedId?: string;
   pagination: Paginator;
 }
 
 const initialState: OrdersState = {
-  [ORDERS_FEATURE]: [
-    {
-      id: 1,
-      date: new Date(),
-      customer: {
-        id: 1,
-        firstName: 'Jon',
-        lastName: 'Rista',
-        phone: null,
-        address: null,
-        email: null,
-        totalOrders: 2,
-        totalSpent: 105.5,
-      },
-      total: 45.99,
-      payment: 'Paid',
-      fulfillment: 'Unfulfilled',
-      items: 2,
-    },
-    {
-      id: 2,
-      date: new Date('11/30/2020'),
-      customer: {
-        id: 2,
-        firstName: 'Jordan',
-        lastName: 'Powell',
-        phone: '937-726-9220',
-        address: {
-          addressLine1: '903 Carnation Dr',
-          city: 'Wapakoneta',
-          state: 'Ohio',
-          zip: 45895,
-        },
-        email: 'jordan.powell@briebug.com',
-        totalOrders: 1,
-        totalSpent: 50,
-      },
-      total: 50,
-      payment: 'Paid',
-      fulfillment: 'Fulfilled',
-      items: 1,
-    },
-  ],
+  [ORDERS_FEATURE]: [],
   isLoading: false,
   pagination: {
     pageIndex: 0,
@@ -75,6 +36,18 @@ const reducer = createReducer(
   on(setSelectedOrderId, (state, { selectedId }) => ({
     ...state,
     selectedId,
+  })),
+  on(getOrders, (state) => ({ ...state, isLoading: true })),
+  on(getOrdersSuccess, (state, { orders }) => ({
+    ...state,
+    orders,
+    isLoading: false,
+    error: '',
+  })),
+  on(getOrdersFailed, (state, { error }) => ({
+    ...state,
+    error,
+    isLoading: false,
   })),
   on(updateOrder, (state) => ({
     ...state,

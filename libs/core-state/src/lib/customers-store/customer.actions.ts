@@ -3,7 +3,19 @@ import { Customer } from './customer';
 
 export const setSelectedCustomerId = createAction(
   '[ROUTED TO CUSTOMER] Sets Customer Id',
-  props<{ selectedId: number }>()
+  props<{ selectedId: string }>()
+);
+
+export const getCustomers = createAction('[CUSTOMERS PAGE] Get All Customers');
+
+export const getCustomersSuccess = createAction(
+  '[CUSTOMER API] Get All Customers Success',
+  props<{ customers: Customer[] }>()
+);
+
+export const getCustomersFailed = createAction(
+  '[CUSTOMER API] Get All Customers Failed',
+  props<{ error: string }>()
 );
 
 export const updateCustomer = createAction(

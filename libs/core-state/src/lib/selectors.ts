@@ -1,19 +1,34 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
-import { billingSelectors } from './billings-store';
-import { productSelectors } from './catalog-store/product';
-import { customersSelectors } from './customers-store';
-import { ordersSelectors } from './orders-store';
-import { shippingSelectors } from './shipping-store';
+import {
+  selectBillingError,
+  selectBillingIsLoading,
+} from './billings-store/billings.selectors';
+import {
+  selectProductError,
+  selectProductIsLoading,
+} from './catalog-store/product/product.selectors';
+import {
+  selectCustomersError,
+  selectCustomersIsLoading,
+} from './customers-store/customers.selectors';
+import {
+  selectOrdersError,
+  selectOrdersIsLoading,
+} from './orders-store/orders.selectors';
+import {
+  selectShippingError,
+  selectShippingIsLoading,
+} from './shipping-store/shipping.selectors';
 
 export const selectIsLoading: MemoizedSelector<
   object,
   boolean
 > = createSelector(
-  productSelectors.selectIsSLoading,
-  customersSelectors.selectIsLoading,
-  ordersSelectors.selectIsLoading,
-  billingSelectors.selectIsLoading,
-  shippingSelectors.selectIsLoading,
+  selectProductIsLoading,
+  selectCustomersIsLoading,
+  selectOrdersIsLoading,
+  selectBillingIsLoading,
+  selectShippingIsLoading,
   (
     productIsLoading: boolean,
     customersIsLoading: boolean,
@@ -29,11 +44,11 @@ export const selectIsLoading: MemoizedSelector<
 );
 
 export const selectError: MemoizedSelector<object, string> = createSelector(
-  productSelectors.selectError,
-  customersSelectors.selectError,
-  ordersSelectors.selectError,
-  billingSelectors.selectError,
-  shippingSelectors.selectError,
+  selectProductError,
+  selectCustomersError,
+  selectOrdersError,
+  selectBillingError,
+  selectShippingError,
   (
     productError: string,
     customersError: string,
