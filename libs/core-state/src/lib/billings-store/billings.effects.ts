@@ -5,7 +5,7 @@ import {
   ROUTER_NAVIGATED,
   SerializedRouterStateSnapshot,
 } from '@ngrx/router-store';
-import { of } from 'rxjs';
+import { of, pipe } from 'rxjs';
 import { catchError, exhaustMap, filter, map } from 'rxjs/operators';
 import { BillingService } from './billing.service';
 import {
@@ -14,6 +14,29 @@ import {
   updateBillingInvoiceFailed,
   updateBillingInvoiceSuccess,
 } from './billings.actions';
+
+// TODO EXTRACT THESE TO SHARED LIB AND USE IN OTHER FEATURES
+export const routeIncludesPath = (url: string) =>
+  pipe(
+    map((r: RouterNavigatedAction) => r.payload.routerState),
+    filter((routerState: SerializedRouterStateSnapshot) =>
+      routerState.url.includes(url)
+    )
+  );
+
+export const extractVerifiedParameter = (param: string) =>
+  pipe(
+    map(
+      ({
+        root: {
+          firstChild: {
+            firstChild: { params },
+          },
+        },
+      }) => params[param]
+    ),
+    filter((p) => !!p)
+  );
 
 @Injectable()
 export class BillingsEffects {
@@ -25,22 +48,8 @@ export class BillingsEffects {
   setSelectedBillingInvoiceFromRoute$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROUTER_NAVIGATED),
-      map((r: RouterNavigatedAction) => r.payload.routerState),
-      filter((routerState: SerializedRouterStateSnapshot) =>
-        routerState.url.includes('/billing')
-      ),
-      map(
-        ({
-          root: {
-            firstChild: {
-              firstChild: {
-                params: { billingId },
-              },
-            },
-          },
-        }) => billingId
-      ),
-      filter((billingId) => !!billingId),
+      routeIncludesPath('/billing'),
+      extractVerifiedParameter('billingId'),
       map((billingId) =>
         setSelectedBillingInvoiceId({ selectedId: Number(billingId) })
       )

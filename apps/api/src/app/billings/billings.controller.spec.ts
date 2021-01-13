@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { MockRepository } from '../mock-repository.spec';
+import { Repository } from 'typeorm';
 import { BillingInvoice } from './billing-invoice';
 import { BillingsController } from './billings.controller';
 import { BillingsService } from './billings.service';
@@ -15,7 +15,7 @@ describe('BillingsController', () => {
         BillingsService,
         {
           provide: getRepositoryToken(BillingInvoice),
-          useClass: MockRepository,
+          useClass: Repository,
         },
       ],
     }).compile();

@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MockRepository } from '../../mock-repository.spec';
+import { Repository } from 'typeorm';
 import { CategoryController } from './category.controller';
 import { CategoryService } from './category.service';
 
@@ -11,7 +11,7 @@ describe('CategoryController', () => {
       controllers: [CategoryController],
       providers: [
         CategoryService,
-        { provide: CategoryService, useClass: MockRepository },
+        { provide: CategoryService, useClass: Repository },
       ],
     }).compile();
 
