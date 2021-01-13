@@ -4,21 +4,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreStateModule } from '@bb-smartish/core-state';
 import { MaterialModule } from '@bb-smartish/material';
 import { AdminModule } from './admin/admin.module';
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { MenuComponent } from './shared/menu/menu.component';
-import { LogoComponent } from './shared/logo/logo.component';
-import { AvatarComponent } from './shared/avatar/avatar.component';
-import { LoaderComponent } from './shared/loader/loader.component';
+import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MenuComponent,
-    LogoComponent,
-    AvatarComponent,
-    LoaderComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,6 +17,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
     BrowserAnimationsModule,
     MaterialModule,
     AdminModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

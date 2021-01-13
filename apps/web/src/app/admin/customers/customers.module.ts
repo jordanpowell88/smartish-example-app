@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomersRoutingModule } from './customers-routing.module';
-import { MaterialModule } from '@bb-smartish/material';
-import { CustomersComponent } from './customers.component';
+import { NgModule } from '@angular/core';
+import { SharedModule } from '../../shared/shared.module';
 import { CustomerComponent } from './customer/customer.component';
+import { CustomersRoutingModule } from './customers-routing.module';
+import { CustomersComponent } from './customers.component';
 
 @NgModule({
   declarations: [CustomersComponent, CustomerComponent],
-  imports: [CommonModule, CustomersRoutingModule, MaterialModule],
+  imports: [CommonModule, CustomersRoutingModule, SharedModule],
 })
 export class CustomersModule {}
