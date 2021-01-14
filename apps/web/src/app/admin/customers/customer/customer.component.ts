@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   Customer,
-  customerActions,
-  customersSelectors,
+  selectCustomer,
+  updateCustomer,
 } from 'libs/core-state/src/lib';
 
 @Component({
@@ -12,11 +12,11 @@ import {
   styleUrls: ['./customer.component.scss'],
 })
 export class CustomerComponent {
-  customer$ = this.store.select(customersSelectors.selectCustomer);
+  customer$ = this.store.select(selectCustomer);
 
   constructor(private readonly store: Store) {}
 
   save(customer: Customer): void {
-    this.store.dispatch(customerActions.updateCustomer({ customer }));
+    this.store.dispatch(updateCustomer({ customer }));
   }
 }

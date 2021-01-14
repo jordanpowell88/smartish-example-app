@@ -1,3 +1,4 @@
+import { Paginator } from '@bb-smartish/api-interfaces';
 import { createAction, props } from '@ngrx/store';
 import { Order } from './order';
 
@@ -31,4 +32,9 @@ export const updateOrderSuccess = createAction(
 export const updateOrderFailed = createAction(
   '[ORDER API] Update Order Failed',
   props<{ error: string }>()
+);
+
+export const updateOrderPagination = createAction(
+  '[ORDER PAGE] Update Pagination Event',
+  props<{ pagination: Paginator }>()
 );

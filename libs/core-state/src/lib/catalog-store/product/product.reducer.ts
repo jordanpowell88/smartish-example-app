@@ -9,6 +9,7 @@ import {
   setSelectedProductId,
   updateProduct,
   updateProductFailed,
+  updateProductPagination,
   updateProductSuccess,
 } from './product.actions';
 
@@ -37,6 +38,13 @@ const reducer = createReducer(
     ...state,
     selectedId,
   })),
+  on(updateProductPagination, (state, { pagination }) => ({
+    ...state,
+    pagination: {
+      ...state.pagination,
+      ...pagination,
+    },
+  })),
   on(getProducts, (state) => ({
     ...state,
     isLoading: true,
@@ -46,6 +54,10 @@ const reducer = createReducer(
     products,
     isLoading: false,
     error: '',
+    pagination: {
+      ...state.pagination,
+      length: products.length,
+    },
   })),
   on(getProductsFailed, (state, { error }) => ({
     ...state,

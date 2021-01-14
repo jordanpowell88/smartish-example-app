@@ -20,7 +20,7 @@ export const selectAllBillings = createSelector(
   (state) => state[BILLINGS_FEATURE]
 );
 
-export const selectPaginator = createSelector(
+export const selectBillingPaginator = createSelector(
   billingFeatureSelector,
   (state) => state.pagination
 );

@@ -20,7 +20,7 @@ export const selectAllCustomers = createSelector(
   (state) => state[CUSTOMERS_FEATURE]
 );
 
-export const selectPaginator = createSelector(
+export const selectCustomerPaginator = createSelector(
   customersFeatureSelector,
   (state) => state.pagination
 );

@@ -10,6 +10,7 @@ import {
   updateBillingInvoice,
   updateBillingInvoiceFailed,
   updateBillingInvoiceSuccess,
+  updateBillingPagination,
 } from './billings.actions';
 
 export const BILLINGS_FEATURE = 'billings';
@@ -37,6 +38,13 @@ const reducer = createReducer(
     ...state,
     selectedId,
   })),
+  on(updateBillingPagination, (state, { pagination }) => ({
+    ...state,
+    pagination: {
+      ...state.pagination,
+      ...pagination,
+    },
+  })),
   on(getBillingInvoices, (state) => ({
     ...state,
     isLoading: true,
@@ -46,6 +54,10 @@ const reducer = createReducer(
     billings,
     isLoading: false,
     error: '',
+    pagination: {
+      ...state.pagination,
+      length: billings.length,
+    },
   })),
   on(updateBillingInvoice, (state, { invoice }) => ({
     ...state,

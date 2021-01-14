@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
-  shippingActions,
+  selectShipment,
   ShippingInvoice,
-  shippingSelectors,
-} from 'libs/core-state/src/lib';
+  updateShippingInvoice,
+} from '@bb-smartish/core-state';
 
 @Component({
   selector: 'bb-smartish-shipment',
@@ -12,11 +12,11 @@ import {
   styleUrls: ['./shipment.component.scss'],
 })
 export class ShipmentComponent {
-  shipment$ = this.store.select(shippingSelectors.selectShipment);
+  shipment$ = this.store.select(selectShipment);
 
   constructor(private readonly store: Store) {}
 
   save(invoice: ShippingInvoice): void {
-    this.store.dispatch(shippingActions.updateShippingInvoice({ invoice }));
+    this.store.dispatch(updateShippingInvoice({ invoice }));
   }
 }

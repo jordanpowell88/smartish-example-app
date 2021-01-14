@@ -1,11 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuComponent } from './menu/menu.component';
-import { LogoComponent } from './logo/logo.component';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { MaterialModule } from '@bb-smartish/material';
 import { AvatarComponent } from './avatar/avatar.component';
 import { LoaderComponent } from './loader/loader.component';
+import { LogoComponent } from './logo/logo.component';
+import { MenuComponent } from './menu/menu.component';
 import { NoItemsFoundComponent } from './no-items-found/no-items-found.component';
-import { MaterialModule } from '@bb-smartish/material';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -14,8 +16,9 @@ import { MaterialModule } from '@bb-smartish/material';
     AvatarComponent,
     LoaderComponent,
     NoItemsFoundComponent,
+    PaginationComponent,
   ],
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, RouterModule, MaterialModule],
   exports: [
     MenuComponent,
     LogoComponent,
@@ -23,6 +26,7 @@ import { MaterialModule } from '@bb-smartish/material';
     LoaderComponent,
     NoItemsFoundComponent,
     MaterialModule,
+    PaginationComponent,
   ],
 })
 export class SharedModule {}

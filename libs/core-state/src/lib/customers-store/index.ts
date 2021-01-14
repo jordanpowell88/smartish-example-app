@@ -1,5 +1,5 @@
-import * as customerActions from './customer.actions';
-import * as customersSelectors from './customers.selectors';
+export * from './customer.actions';
+export * from './customers.selectors';
 export { Customer } from './customer';
 export {
   CUSTOMERS_FEATURE,
@@ -9,4 +9,3 @@ export {
 export { CustomersEffects } from './customers.effects';
 export { CustomersService } from './customers.service';
 export { CustomersStoreModule } from './customers-store.module';
-export { customersSelectors, customerActions };

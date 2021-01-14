@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import { Product, productSelectors } from '@bb-smartish/core-state';
+import {
+  Product,
+  selectProduct,
+  selectSizes,
+  updateProduct,
+} from '@bb-smartish/core-state';
 import { Store } from '@ngrx/store';
-import { productActions } from '@bb-smartish/core-state';
 
 @Component({
   selector: 'bb-smartish-product',
@@ -9,12 +13,12 @@ import { productActions } from '@bb-smartish/core-state';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent {
-  product$ = this.store.select(productSelectors.selectProduct);
-  sizes$ = this.store.select(productSelectors.selectSizes);
+  product$ = this.store.select(selectProduct);
+  sizes$ = this.store.select(selectSizes);
 
   constructor(private readonly store: Store) {}
 
   save(product: Product): void {
-    this.store.dispatch(productActions.updateProduct({ product }));
+    this.store.dispatch(updateProduct({ product }));
   }
 }
