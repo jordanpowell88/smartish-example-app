@@ -10,6 +10,7 @@ import {
   updateShippingInvoice,
   updateShippingInvoiceFailed,
   updateShippingInvoiceSuccess,
+  updateShippingPagination,
 } from './shipping.actions';
 
 export const SHIPPING_FEATURE = 'shipping';
@@ -37,12 +38,23 @@ const reducer = createReducer(
     ...state,
     selectedId,
   })),
+  on(updateShippingPagination, (state, { pagination }) => ({
+    ...state,
+    pagination: {
+      ...state.pagination,
+      ...pagination,
+    },
+  })),
   on(getShippingInvoices, (state) => ({ ...state, isLoading: true })),
   on(getShippingInvoicesSuccess, (state, { shipping }) => ({
     ...state,
     shipping,
     isLoading: false,
     error: '',
+    pagination: {
+      ...state.pagination,
+      length: shipping.length,
+    },
   })),
   on(getShippingInvoicesFailed, (state, { error }) => ({
     ...state,

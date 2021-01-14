@@ -22,7 +22,7 @@ export const selectAllProducts = createSelector(
   (state) => state[PRODUCT_FEATURE_SLICE]
 );
 
-export const selectPaginator = createSelector(
+export const selectProductPaginator = createSelector(
   productFeatureSelector,
   (state) => state.pagination
 );

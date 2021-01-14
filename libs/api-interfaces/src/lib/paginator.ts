@@ -1,6 +1,7 @@
 export interface Paginator {
   length: number;
+  pageIndex: number;
   pageSize: number;
   pageSizeOptions: number[];
-  pageIndex: number;
+  previousPageIndex?: number;
 }

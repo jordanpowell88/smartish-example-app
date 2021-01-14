@@ -26,12 +26,6 @@
 
         <bb-smartish-no-items-found *ngIf="customers.length === 0"></bb-smartish-no-items-found>
 
-        <!-- TODO Make Own Component -->
-        <mat-paginator *ngIf="(paginator$ | async) as paginator"
-            [length]="paginator.length"
-            [pageSize]="paginator.pageSize"
-            [pageSizeOptions]="paginator.pageSizeOptions"
-            (page)="pageEvent = $event">
-        </mat-paginator>
+        <bb-smartish-pagination [paginator]="paginator$ | async" (page)="updatePagination($event)"></bb-smartish-pagination>
     </mat-card-content>
 </mat-card>

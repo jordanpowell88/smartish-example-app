@@ -1,3 +1,4 @@
+import { Paginator } from '@bb-smartish/api-interfaces';
 import { createAction, props } from '@ngrx/store';
 import { Product } from './product';
 
@@ -41,4 +42,9 @@ export const saveProductSuccess = createAction(
 export const saveProductFailed = createAction(
   '[PRODUCT API] Save Product Failed',
   props<{ error: string }>()
+);
+
+export const updateProductPagination = createAction(
+  '[PRODUCT PAGE] Update Pagination Event',
+  props<{ pagination: Paginator }>()
 );

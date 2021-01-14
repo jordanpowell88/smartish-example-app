@@ -1,5 +1,5 @@
-import * as productActions from './product.actions';
-import * as productSelectors from './product.selectors';
+export * from './product.actions';
+export * from './product.selectors';
 export {
   PRODUCT_FEATURE_SLICE,
   ProductState,
@@ -9,4 +9,3 @@ export {
 export { Product } from './product';
 export { ProductEffects } from './product.effects';
 export { ProductService } from './product.service';
-export { productSelectors, productActions };

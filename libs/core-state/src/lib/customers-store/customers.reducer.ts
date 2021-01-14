@@ -9,6 +9,7 @@ import {
   setSelectedCustomerId,
   updateCustomer,
   updateCustomerFailed,
+  updateCustomerPagination,
   updateCustomerSuccess,
 } from './customer.actions';
 
@@ -37,12 +38,23 @@ const reducer = createReducer(
     ...state,
     selectedId,
   })),
+  on(updateCustomerPagination, (state, { pagination }) => ({
+    ...state,
+    pagination: {
+      ...state.pagination,
+      ...pagination,
+    },
+  })),
   on(getCustomers, (state) => ({ ...state, isLoading: true })),
   on(getCustomersSuccess, (state, { customers }) => ({
     ...state,
     customers,
     isLoading: false,
     error: '',
+    pagination: {
+      ...state.pagination,
+      length: customers.length,
+    },
   })),
   on(getCustomersFailed, (state, { error }) => ({
     ...state,

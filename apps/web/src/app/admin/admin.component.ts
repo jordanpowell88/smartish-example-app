@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { createSelector, Store } from '@ngrx/store';
 import {
-  ordersSelectors,
-  customersSelectors,
-  productSelectors,
   Customer,
   Order,
   Product,
+  selectAllProducts,
+  selectAllCustomers,
+  selectAllOrders,
 } from '@bb-smartish/core-state';
 
 const selectDashboardPreviews = createSelector(
-  ordersSelectors.selectAllOrders,
-  customersSelectors.selectAllCustomers,
-  productSelectors.selectAllProducts,
+  selectAllOrders,
+  selectAllCustomers,
+  selectAllProducts,
   (orders: Order[], customers: Customer[], products: Product[]) => [
     {
       title: 'Orders',

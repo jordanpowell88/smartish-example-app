@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Customer, customersSelectors } from '@bb-smartish/core-state';
+import {
+  Customer,
+  selectAllCustomers,
+  selectCustomerPaginator,
+  updateCustomerPagination,
+} from '@bb-smartish/core-state';
+import { Paginator } from 'libs/api-interfaces/src/lib';
 
 type CustomerColumnKeys = keyof Customer;
 
@@ -10,13 +16,17 @@ type CustomerColumnKeys = keyof Customer;
   styleUrls: ['./customers.component.scss'],
 })
 export class CustomersComponent {
-  customers$ = this.store.select(customersSelectors.selectAllCustomers);
+  customers$ = this.store.select(selectAllCustomers);
   displayedColumns: CustomerColumnKeys[] = [
     'email',
     'totalOrders',
     'totalSpent',
   ];
-  paginator$ = this.store.select(customersSelectors.selectPaginator);
+  paginator$ = this.store.select(selectCustomerPaginator);
 
   constructor(private readonly store: Store) {}
+
+  updatePagination(pagination: Paginator): void {
+    this.store.dispatch(updateCustomerPagination({ pagination }));
+  }
 }

@@ -1,3 +1,4 @@
+import { Paginator } from '@bb-smartish/api-interfaces';
 import { createAction, props } from '@ngrx/store';
 import { BillingInvoice } from './billing-invoice';
 import { BILLINGS_FEATURE } from './billings.reducer';
@@ -34,4 +35,9 @@ export const updateBillingInvoiceSuccess = createAction(
 export const updateBillingInvoiceFailed = createAction(
   '[BILLING API] Update Billing Failed',
   props<{ error: string }>()
+);
+
+export const updateBillingPagination = createAction(
+  '[BILLING PAGE] Update Pagination Event',
+  props<{ pagination: Paginator }>()
 );

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
-  billingActions,
   BillingInvoice,
-  billingSelectors,
+  selectBill,
+  updateBillingInvoice,
 } from '@bb-smartish/core-state';
 import { Store } from '@ngrx/store';
 
@@ -12,11 +12,11 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./bill.component.scss'],
 })
 export class BillComponent {
-  bill$ = this.store.select(billingSelectors.selectBill);
+  bill$ = this.store.select(selectBill);
 
   constructor(private readonly store: Store) {}
 
   save(invoice: BillingInvoice) {
-    this.store.dispatch(billingActions.updateBillingInvoice({ invoice }));
+    this.store.dispatch(updateBillingInvoice({ invoice }));
   }
 }
