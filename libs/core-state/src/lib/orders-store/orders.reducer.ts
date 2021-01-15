@@ -3,6 +3,9 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { BaseState } from '../base-state';
 import { Order } from './order';
 import {
+  addOrder,
+  addOrderFailed,
+  addOrderSuccess,
   getOrders,
   getOrdersFailed,
   getOrdersSuccess,
@@ -45,7 +48,10 @@ const reducer = createReducer(
       ...pagination,
     },
   })),
-  on(getOrders, (state) => ({ ...state, isLoading: true })),
+  on(getOrders, updateOrder, addOrder, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
   on(getOrdersSuccess, (state, { orders }) => ({
     ...state,
     orders,
@@ -56,25 +62,27 @@ const reducer = createReducer(
       length: orders.length,
     },
   })),
-  on(getOrdersFailed, (state, { error }) => ({
-    ...state,
-    error,
-    isLoading: false,
-  })),
-  on(updateOrder, (state) => ({
-    ...state,
-    isLoading: true,
-  })),
   on(updateOrderSuccess, (state, { order }) => ({
     ...state,
     isLoading: false,
     error: '',
   })),
-  on(updateOrderFailed, (state, { error }) => ({
+  on(addOrderSuccess, (state, { order }) => ({
     ...state,
+    orders: [...state[ORDERS_FEATURE], order],
     isLoading: false,
-    error,
-  }))
+    error: '',
+  })),
+  on(
+    getOrdersFailed,
+    updateOrderFailed,
+    addOrderFailed,
+    (state, { error }) => ({
+      ...state,
+      isLoading: false,
+      error,
+    })
+  )
 );
 
 export function ordersReducer(

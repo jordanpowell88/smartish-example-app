@@ -38,3 +38,18 @@ export const updateOrderPagination = createAction(
   '[ORDER PAGE] Update Pagination Event',
   props<{ pagination: Paginator }>()
 );
+
+export const addOrder = createAction(
+  '[ADD ORDER PAGE] Add Order',
+  props<{ order: Order }>()
+);
+
+export const addOrderSuccess = createAction(
+  '[ORDER API] Add Order Sucess',
+  props<{ order: Order }>()
+);
+
+export const addOrderFailed = createAction(
+  '[ORDER API] Add Order Failed',
+  props<{ error: string }>()
+);

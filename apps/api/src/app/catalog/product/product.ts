@@ -1,5 +1,4 @@
-import { Photo, Size } from '@bb-smartish/api-interfaces';
-import { Status } from 'libs/api-interfaces/src/lib/product';
+import { Photo, Size, Status } from '@bb-smartish/api-interfaces';
 import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
 @Entity()
