@@ -53,3 +53,18 @@ export const addOrderFailed = createAction(
   '[ORDER API] Add Order Failed',
   props<{ error: string }>()
 );
+
+export const deleteOrder = createAction(
+  '[ORDER PAGE] Delete Order Button Clicked',
+  props<{ order: Order }>()
+);
+
+export const deleteOrderSuccess = createAction(
+  '[ORDER API] Delete Order Success',
+  props<{ order: Order }>()
+);
+
+export const deleteOrderFailed = createAction(
+  '[ORDER API] Delete Order Failed',
+  props<{ error: string }>()
+);

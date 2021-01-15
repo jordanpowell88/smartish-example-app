@@ -35,8 +35,7 @@
             <ng-container matColumnDef="fulfillment">
                 <th mat-header-cell *matHeaderCellDef>Fulfillment</th>
                 <td mat-cell *matCellDef="let order">
-                     <!-- TODO make component -->
-                     <mat-chip-list>
+                     <mat-chip-list *ngIf="!!order.fulfillment">
                         <mat-chip>{{ order.fulfillment }}</mat-chip>
                     </mat-chip-list>
                 </td>

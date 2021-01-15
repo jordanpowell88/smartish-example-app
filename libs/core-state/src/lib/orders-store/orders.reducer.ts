@@ -6,6 +6,9 @@ import {
   addOrder,
   addOrderFailed,
   addOrderSuccess,
+  deleteOrder,
+  deleteOrderFailed,
+  deleteOrderSuccess,
   getOrders,
   getOrdersFailed,
   getOrdersSuccess,
@@ -48,7 +51,7 @@ const reducer = createReducer(
       ...pagination,
     },
   })),
-  on(getOrders, updateOrder, addOrder, (state) => ({
+  on(getOrders, updateOrder, addOrder, deleteOrder, (state) => ({
     ...state,
     isLoading: true,
   })),
@@ -73,10 +76,17 @@ const reducer = createReducer(
     isLoading: false,
     error: '',
   })),
+  on(deleteOrderSuccess, (state, { order }) => ({
+    ...state,
+    orders: [...state[ORDERS_FEATURE].filter((o) => o.id !== order.id)],
+    isLoading: false,
+    error: '',
+  })),
   on(
     getOrdersFailed,
     updateOrderFailed,
     addOrderFailed,
+    deleteOrderFailed,
     (state, { error }) => ({
       ...state,
       isLoading: false,

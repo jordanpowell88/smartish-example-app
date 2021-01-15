@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Order, selectOrder, updateOrder } from '@bb-smartish/core-state';
+import {
+  deleteOrder,
+  Order,
+  selectOrder,
+  updateOrder,
+} from '@bb-smartish/core-state';
 
 @Component({
   selector: 'bb-smartish-order',
@@ -14,5 +19,9 @@ export class OrderComponent {
 
   save(order: Order): void {
     this.store.dispatch(updateOrder({ order }));
+  }
+
+  delete(order: Order): void {
+    this.store.dispatch(deleteOrder({ order }));
   }
 }

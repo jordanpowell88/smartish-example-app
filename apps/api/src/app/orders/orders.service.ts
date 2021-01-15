@@ -13,7 +13,7 @@ export class OrdersService {
     return from(this.repo.find());
   }
 
-  load(id: number): Observable<Order> {
+  load(id: string): Observable<Order> {
     return from(this.repo.findOne(id));
   }
 
@@ -25,7 +25,7 @@ export class OrdersService {
     return from(this.create(order));
   }
 
-  delete(id: number): Observable<Order> {
+  delete(id: string): Observable<Order> {
     return from(this.load(id).pipe(tap((order) => this.repo.remove(order))));
   }
 }
