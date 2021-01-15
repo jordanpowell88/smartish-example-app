@@ -12,6 +12,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RouterEffects } from './router.effects';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarEffects } from './snack-bar.effects';
+import { ModalEffects } from './modal.effects';
 
 @NgModule({
   declarations: [],
@@ -29,7 +30,7 @@ import { SnackBarEffects } from './snack-bar.effects';
         strictStateImmutability: true,
       },
     }),
-    EffectsModule.forRoot([RouterEffects, SnackBarEffects]),
+    EffectsModule.forRoot([RouterEffects, SnackBarEffects, ModalEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument(),
   ],

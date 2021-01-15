@@ -34,6 +34,11 @@ export const updateProductFailed = createAction(
   props<{ error: string }>()
 );
 
+export const saveProduct = createAction(
+  '[PRODUCT PAGE] Save Product From Form',
+  props<{ product: Product }>()
+);
+
 export const saveProductSuccess = createAction(
   '[PRODUCT API] Save Product Success',
   props<{ product: Product }>()

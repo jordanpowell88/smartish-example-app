@@ -29,7 +29,7 @@ export const selectProductPaginator = createSelector(
 
 export const selectProduct = createSelector(productFeatureSelector, (state) =>
   state[PRODUCT_FEATURE_SLICE].find(
-    (product) => product.sku === state.selectedId
+    (product) => product.id === state.selectedId
   )
 );
 

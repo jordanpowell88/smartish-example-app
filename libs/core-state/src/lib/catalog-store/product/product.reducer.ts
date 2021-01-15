@@ -6,6 +6,9 @@ import {
   getProducts,
   getProductsFailed,
   getProductsSuccess,
+  saveProduct,
+  saveProductFailed,
+  saveProductSuccess,
   setSelectedProductId,
   updateProduct,
   updateProductFailed,
@@ -51,7 +54,7 @@ const reducer = createReducer(
   })),
   on(getProductsSuccess, (state, { products }) => ({
     ...state,
-    products,
+    product: products,
     isLoading: false,
     error: '',
     pagination: {
@@ -64,16 +67,27 @@ const reducer = createReducer(
     error,
     isLoading: false,
   })),
-  on(updateProduct, (state) => ({
+  on(updateProduct, saveProduct, (state, { product }) => ({
     ...state,
     isLoading: true,
   })),
-  on(updateProductSuccess, (state, { product }) => ({
+  on(saveProductSuccess, (state, { product }) => ({
     ...state,
+    product: [...state[PRODUCT_FEATURE_SLICE], product],
     isLoading: false,
     error: '',
   })),
-  on(updateProductFailed, (state, { error }) => ({
+  on(updateProductSuccess, (state, { product }) => ({
+    ...state,
+    product: [
+      ...state[PRODUCT_FEATURE_SLICE].map((p) =>
+        p.sku === product.sku ? product : p
+      ),
+    ],
+    isLoading: false,
+    error: '',
+  })),
+  on(updateProductFailed, saveProductFailed, (state, { error }) => ({
     ...state,
     isLoading: false,
     error,

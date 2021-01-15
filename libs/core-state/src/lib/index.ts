@@ -5,5 +5,7 @@ export * from './orders-store';
 export * from './shipping-store';
 export * from './selectors';
 export { RouterEffects } from './router.effects';
+export { ModalEffects } from './modal.effects';
+export { SnackBarEffects } from './snack-bar.effects';
 export { CoreState } from './core-state';
 export { CoreStateModule } from './core-state.module';
