@@ -9,7 +9,10 @@ import {
   updateProductSuccess,
 } from './catalog-store/product/product.actions';
 import { updateCustomerSuccess } from './customers-store/customer.actions';
-import { updateOrderSuccess } from './orders-store/orders.actions';
+import {
+  addOrderSuccess,
+  updateOrderSuccess,
+} from './orders-store/orders.actions';
 import { updateShippingInvoiceSuccess } from './shipping-store/shipping.actions';
 
 @Injectable()
@@ -40,7 +43,7 @@ export class RouterEffects {
   routeToOrdersOnOrderSaveSuccesss$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(updateOrderSuccess),
+        ofType(updateOrderSuccess, addOrderSuccess),
         map(() => this.router.navigate(['/orders']))
       ),
     { dispatch: false }

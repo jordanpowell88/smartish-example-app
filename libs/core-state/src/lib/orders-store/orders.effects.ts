@@ -12,6 +12,9 @@ import {
 import { of } from 'rxjs';
 import { catchError, exhaustMap, filter, map } from 'rxjs/operators';
 import {
+  addOrder,
+  addOrderFailed,
+  addOrderSuccess,
   getOrders,
   getOrdersFailed,
   getOrdersSuccess,
@@ -66,6 +69,19 @@ export class OrdersEffects {
         this.ordersService.update(order).pipe(
           map((order) => updateOrderSuccess({ order })),
           catchError((error) => of(updateOrderFailed({ error })))
+        )
+      )
+    )
+  );
+
+  addOrderPageSaveButtonClicked$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addOrder),
+      map((action) => action.order),
+      exhaustMap((order) =>
+        this.ordersService.create(order).pipe(
+          map((order) => addOrderSuccess({ order })),
+          catchError((error) => of(addOrderFailed({ error })))
         )
       )
     )
