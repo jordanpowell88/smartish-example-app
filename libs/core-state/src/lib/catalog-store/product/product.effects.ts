@@ -8,6 +8,9 @@ import {
 import { ProductService } from './product.service';
 import { catchError, exhaustMap, filter, map } from 'rxjs/operators';
 import {
+  deleteProduct,
+  deleteProductFailed,
+  deleteProductSuccess,
   getProducts,
   getProductsFailed,
   getProductsSuccess,
@@ -82,6 +85,19 @@ export class ProductEffects {
         this.productService.create(product).pipe(
           map((product) => saveProductSuccess({ product })),
           catchError((error) => of(saveProductFailed({ error })))
+        )
+      )
+    )
+  );
+
+  productPageDeleteButtonClicked$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteProduct),
+      map((action) => action.product.id),
+      exhaustMap((productId) =>
+        this.productService.delete(productId).pipe(
+          map((product) => deleteProductSuccess({ product })),
+          catchError((error) => of(deleteProductFailed({ error })))
         )
       )
     )

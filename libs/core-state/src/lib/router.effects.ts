@@ -4,6 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map } from 'rxjs/operators';
 import { updateBillingInvoiceSuccess } from './billings-store/billings.actions';
 import {
+  deleteProductSuccess,
   saveProductSuccess,
   updateProductSuccess,
 } from './catalog-store/product/product.actions';
@@ -21,7 +22,7 @@ export class RouterEffects {
   routeToCatalogOnProductSaveSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(updateProductSuccess, saveProductSuccess),
+        ofType(updateProductSuccess, saveProductSuccess, deleteProductSuccess),
         map(() => this.router.navigate(['/catalog']))
       ),
     { dispatch: false }

@@ -4,7 +4,7 @@ import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
 @Entity()
 export class Product {
-  @ObjectIdColumn() id: number;
+  @ObjectIdColumn() id: string;
 
   @Column() name: string;
 

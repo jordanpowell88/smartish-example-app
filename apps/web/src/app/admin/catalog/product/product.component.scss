@@ -3,14 +3,19 @@
   color: #fff;
 }
 
-mat-icon {
-  float: right;
-}
-
 img {
   width: 25%;
 }
 
-button {
+button.save,
+button.cancel {
+  margin: 0 1rem 0 0;
+}
+
+button.save {
   background-color: #63923b !important;
+}
+
+button.delete {
+  float: right;
 }

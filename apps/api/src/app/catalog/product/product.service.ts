@@ -13,7 +13,7 @@ export class ProductService {
     return from(this.repo.find());
   }
 
-  load(id: number): Observable<Product> {
+  load(id: string): Observable<Product> {
     return from(this.repo.findOne(id));
   }
 
@@ -25,7 +25,7 @@ export class ProductService {
     return from(this.create(product));
   }
 
-  delete(id: number): Observable<Product> {
+  delete(id: string): Observable<Product> {
     return from(
       this.load(id).pipe(tap((product) => this.repo.remove(product)))
     );

@@ -53,3 +53,18 @@ export const updateProductPagination = createAction(
   '[PRODUCT PAGE] Update Pagination Event',
   props<{ pagination: Paginator }>()
 );
+
+export const deleteProduct = createAction(
+  '[PRODUCT PAGE] Delete Product Button Clicked',
+  props<{ product: Product }>()
+);
+
+export const deleteProductSuccess = createAction(
+  '[PRODUCT API] Delete Product Success',
+  props<{ product: Product }>()
+);
+
+export const deleteProductFailed = createAction(
+  '[PRODUCT API] Delete Product Failed',
+  props<{ error: string }>()
+);
