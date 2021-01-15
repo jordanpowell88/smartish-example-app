@@ -11,6 +11,9 @@ import {
   getProducts,
   getProductsFailed,
   getProductsSuccess,
+  saveProduct,
+  saveProductFailed,
+  saveProductSuccess,
   setSelectedProductId,
   updateProduct,
   updateProductFailed,
@@ -66,6 +69,19 @@ export class ProductEffects {
         this.productService.update(product).pipe(
           map((product) => updateProductSuccess({ product })),
           catchError((error) => of(updateProductFailed({ error })))
+        )
+      )
+    )
+  );
+
+  addProductPageSaveButtonClicked$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(saveProduct),
+      map((action) => action.product),
+      exhaustMap((product) =>
+        this.productService.create(product).pipe(
+          map((product) => saveProductSuccess({ product })),
+          catchError((error) => of(saveProductFailed({ error })))
         )
       )
     )

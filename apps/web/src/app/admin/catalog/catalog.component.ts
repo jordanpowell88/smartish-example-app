@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component } from '@angular/core';
 import {
   Product,
   selectAllProducts,
   selectProductPaginator,
   updateProductPagination,
 } from '@bb-smartish/core-state';
+import { Store } from '@ngrx/store';
 import { Paginator } from 'libs/api-interfaces/src/lib';
 
 type CatalogColumnKeys = keyof Product;
