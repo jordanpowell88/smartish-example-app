@@ -11,6 +11,7 @@ import {
 import { updateCustomerSuccess } from './customers-store/customer.actions';
 import {
   addOrderSuccess,
+  deleteOrderSuccess,
   updateOrderSuccess,
 } from './orders-store/orders.actions';
 import { updateShippingInvoiceSuccess } from './shipping-store/shipping.actions';
@@ -43,7 +44,7 @@ export class RouterEffects {
   routeToOrdersOnOrderSaveSuccesss$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(updateOrderSuccess, addOrderSuccess),
+        ofType(updateOrderSuccess, addOrderSuccess, deleteOrderSuccess),
         map(() => this.router.navigate(['/orders']))
       ),
     { dispatch: false }

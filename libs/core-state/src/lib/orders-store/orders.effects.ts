@@ -15,6 +15,9 @@ import {
   addOrder,
   addOrderFailed,
   addOrderSuccess,
+  deleteOrder,
+  deleteOrderFailed,
+  deleteOrderSuccess,
   getOrders,
   getOrdersFailed,
   getOrdersSuccess,
@@ -82,6 +85,19 @@ export class OrdersEffects {
         this.ordersService.create(order).pipe(
           map((order) => addOrderSuccess({ order })),
           catchError((error) => of(addOrderFailed({ error })))
+        )
+      )
+    )
+  );
+
+  orderPageDeleteButtonClicked$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteOrder),
+      map((action) => action.order.id),
+      exhaustMap((orderId) =>
+        this.ordersService.delete(orderId).pipe(
+          map((order) => deleteOrderSuccess({ order })),
+          catchError((error) => of(deleteOrderFailed({ error })))
         )
       )
     )

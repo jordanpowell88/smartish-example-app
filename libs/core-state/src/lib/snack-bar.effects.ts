@@ -17,6 +17,7 @@ import {
 } from './customers-store/customer.actions';
 import {
   addOrderFailed,
+  deleteOrderFailed,
   getOrdersFailed,
   updateOrderFailed,
 } from './orders-store/orders.actions';
@@ -47,7 +48,8 @@ export class SnackBarEffects {
           getCustomersFailed,
           getOrdersFailed,
           getShippingInvoicesFailed,
-          addOrderFailed
+          addOrderFailed,
+          deleteOrderFailed
         ),
         map((action) => action.error),
         map((error) =>
