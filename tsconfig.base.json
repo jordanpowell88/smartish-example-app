@@ -16,7 +16,8 @@
       "@bb-smartish/core-state": ["libs/core-state/src/index.ts"],
       "@bb-smartish/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@bb-smartish/material": ["libs/material/src/index.ts"],
-      "@bb-smartish/operators": ["libs/operators/src/index.ts"]
+      "@bb-smartish/operators": ["libs/operators/src/index.ts"],
+      "@bb-smartish/smart-forms": ["libs/smart-forms/src/index.ts"]
     },
     "rootDir": "."
   }

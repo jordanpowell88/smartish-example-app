@@ -5,16 +5,10 @@ import { OrderComponent } from './order/order.component';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrdersComponent } from './orders.component';
 import { AddOrderComponent } from './add-order/add-order.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SmartFormsModule } from '@bb-smartish/smart-forms';
 
 @NgModule({
   declarations: [OrdersComponent, OrderComponent, AddOrderComponent],
-  imports: [
-    CommonModule,
-    OrdersRoutingModule,
-    SharedModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ],
+  imports: [CommonModule, OrdersRoutingModule, SharedModule, SmartFormsModule],
 })
 export class OrdersModule {}

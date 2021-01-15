@@ -6,5 +6,6 @@ module.exports = {
     '<rootDir>/apps/api',
     '<rootDir>/libs/material',
     '<rootDir>/libs/operators',
+    '<rootDir>/libs/smart-forms',
   ],
 };

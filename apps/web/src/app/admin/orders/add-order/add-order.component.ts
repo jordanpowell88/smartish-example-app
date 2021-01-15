@@ -1,17 +1,8 @@
 import { Component } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { addOrder, Order, Payment } from '@bb-smartish/core-state';
-
-const required = Validators.required;
-const email = Validators.email;
-// const email: ValidatorFn[] = [Validators.email, required];
+import { email, required } from '@bb-smartish/smart-forms';
+import { Store } from '@ngrx/store';
 
 class AddressForm extends FormGroup {
   readonly addressLine1: AbstractControl;
@@ -54,7 +45,7 @@ class CustomerForm extends FormGroup {
         firstName: ['', required],
         lastName: ['', required],
         phone: ['', required],
-        email: ['', [email, email]],
+        email: ['', [email]],
         address: new AddressForm(fb),
       }).controls
     );

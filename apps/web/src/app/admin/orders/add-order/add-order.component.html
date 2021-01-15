@@ -10,76 +10,28 @@
         <mat-icon>more_vert</mat-icon>
         
         <form [formGroup]="form">
-            <mat-form-field>
-                <mat-label>Total</mat-label>
-                <input type="text" matInput [formControl]="form.total" />
-                <mat-error></mat-error>
-            </mat-form-field>
+
+            <bb-smartish-text label="Total" [control]="form.total"></bb-smartish-text>
             
+            <bb-smartish-select label="Payments" [control]="form.payment" [options]="form.paymentOptions"></bb-smartish-select>
             
-            <mat-form-field>
-                <mat-label>Payments</mat-label>
-                <mat-select [formControl]="form.payment">
-                    <mat-option *ngFor="let payment of form.paymentOptions" [value]="payment">{{ payment }}</mat-option>
-                </mat-select>
-                <mat-error></mat-error>
-            </mat-form-field>
+            <bb-smartish-number label="# of Items" [control]="form.items"></bb-smartish-number>
 
+            <bb-smartish-text label="First Name" [control]="form.Customer.firstName"></bb-smartish-text>
 
-            <mat-form-field>
-                <mat-label># of Items</mat-label>
-                <input matInput type="number" [formControl]="form.items" />
-                <mat-error></mat-error>
-            </mat-form-field>
+            <bb-smartish-text label="Last Name" [control]="form.Customer.lastName"></bb-smartish-text>
 
-            <mat-form-field>
-                <mat-label>First Name</mat-label>
-                <input matInput type="text" [formControl]="form.Customer.firstName" />
-                <mat-error></mat-error>
-            </mat-form-field>
+            <bb-smartish-phone label="Phone" [control]="form.Customer.phone"></bb-smartish-phone>
 
-            <mat-form-field>
-                <mat-label>Last Name</mat-label>
-                <input matInput type="text" [formControl]="form.Customer.lastName" />
-                <mat-error></mat-error>
-            </mat-form-field>
-            
-            <mat-form-field>
-                <mat-label>Phone</mat-label>
-                <input matInput type="tel" [formControl]="form.Customer.phone" />
-                <mat-error></mat-error>
-            </mat-form-field>
+            <bb-smartish-email label="Email" [control]="form.Customer.email"></bb-smartish-email>
 
-            <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input matInput type="email" [formControl]="form.Customer.email" />
-                <mat-error></mat-error>
-            </mat-form-field>
+            <bb-smartish-text label="Address Line #1" [control]="form.Customer.Address.addressLine1"></bb-smartish-text>
 
-            <mat-form-field>
-                <mat-label>Address Line #1</mat-label>
-                <input matInput type="text" [formControl]="form.Customer.Address?.addressLine1" />
-                <mat-error></mat-error>
-            </mat-form-field>
+            <bb-smartish-text label="City" [control]="form.Customer.Address.city"></bb-smartish-text>
 
-            <mat-form-field>
-                <mat-label>City</mat-label>
-                <input matInput type="text" [formControl]="form.Customer.Address?.city" />
-                <mat-error></mat-error>
-            </mat-form-field>
+            <bb-smartish-select label="State" [control]="form.Customer.Address.state" [options]="form.Customer.Address.stateOptions"></bb-smartish-select>
 
-            <mat-form-field>
-                <mat-label>State</mat-label>
-                <mat-select [formControl]="form.Customer.Address.state">
-                    <mat-option *ngFor="let state of form.Customer.Address.stateOptions" [value]="state">{{ state }}</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Zip</mat-label>
-                <input matInput type="number" [formControl]="form.Customer.Address?.zip" />
-                <mat-error></mat-error>
-            </mat-form-field>
+            <bb-smartish-number label="Zip" [control]="form.Customer.Address.zip"></bb-smartish-number>
 
             <button mat-raised-button routerLink="/orders">Cancel</button>
             
