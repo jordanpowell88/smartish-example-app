@@ -3,6 +3,9 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { BaseState } from '../../base-state';
 import { Product } from './product';
 import {
+  deleteProduct,
+  deleteProductFailed,
+  deleteProductSuccess,
   getProducts,
   getProductsFailed,
   getProductsSuccess,
@@ -67,7 +70,7 @@ const reducer = createReducer(
     error,
     isLoading: false,
   })),
-  on(updateProduct, saveProduct, (state, { product }) => ({
+  on(updateProduct, saveProduct, deleteProduct, (state, { product }) => ({
     ...state,
     isLoading: true,
   })),
@@ -87,11 +90,24 @@ const reducer = createReducer(
     isLoading: false,
     error: '',
   })),
-  on(updateProductFailed, saveProductFailed, (state, { error }) => ({
+  on(deleteProductSuccess, (state, { product }) => ({
     ...state,
+    product: [
+      ...state[PRODUCT_FEATURE_SLICE].filter((p) => p.id !== product.id),
+    ],
     isLoading: false,
-    error,
-  }))
+    error: '',
+  })),
+  on(
+    updateProductFailed,
+    saveProductFailed,
+    deleteProductFailed,
+    (state, { error }) => ({
+      ...state,
+      isLoading: false,
+      error,
+    })
+  )
 );
 
 export function productReducer(

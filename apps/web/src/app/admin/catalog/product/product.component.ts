@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {
+  deleteProduct,
   Product,
   selectProduct,
   selectSizes,
@@ -20,5 +21,9 @@ export class ProductComponent {
 
   save(product: Product): void {
     this.store.dispatch(updateProduct({ product }));
+  }
+
+  delete(product: Product): void {
+    this.store.dispatch(deleteProduct({ product }));
   }
 }
