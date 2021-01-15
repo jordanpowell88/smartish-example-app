@@ -1,0 +1,7 @@
+<mat-form-field *ngIf="control">
+    <mat-label>{{ label }}</mat-label>
+    <mat-select [formControl]="control">
+        <mat-option *ngFor="let option of options" [value]="option">{{ option }}</mat-option>
+    </mat-select>
+    <bb-smartish-error [control]="control"></bb-smartish-error>
+</mat-form-field>

@@ -1,0 +1,5 @@
+<mat-form-field *ngIf="control">
+    <mat-label>{{ label }}</mat-label>
+    <input type="number" matInput [formControl]="control" />
+    <bb-smartish-error [control]="control"></bb-smartish-error>
+</mat-form-field>

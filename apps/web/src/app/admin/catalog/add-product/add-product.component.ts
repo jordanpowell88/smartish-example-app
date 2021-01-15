@@ -8,9 +8,7 @@ import {
 import { Product, Size } from '@bb-smartish/api-interfaces';
 import { Store } from '@ngrx/store';
 import { saveProduct } from '@bb-smartish/core-state';
-
-const required = Validators.required;
-const numeric = Validators.pattern('[0-9]*$');
+import { numeric, required } from '@bb-smartish/smart-forms';
 
 class AddProductForm extends FormGroup {
   readonly name: AbstractControl;
@@ -26,11 +24,11 @@ class AddProductForm extends FormGroup {
   constructor(readonly fb: FormBuilder = new FormBuilder()) {
     super(
       fb.group({
-        name: ['', [required]],
-        description: ['', [required]],
-        quantity: ['', [numeric]],
-        sizes: ['', [required]],
-        price: ['', [numeric]],
+        name: ['', required],
+        description: ['', required],
+        quantity: ['', numeric],
+        sizes: ['', required],
+        price: ['', numeric],
         sku: [''],
       }).controls
     );

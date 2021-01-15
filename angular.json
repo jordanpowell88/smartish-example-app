@@ -275,6 +275,32 @@
           }
         }
       }
+    },
+    "smart-forms": {
+      "projectType": "library",
+      "root": "libs/smart-forms",
+      "sourceRoot": "libs/smart-forms/src",
+      "prefix": "bb-smartish",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/smart-forms/tsconfig.lib.json",
+              "libs/smart-forms/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/smart-forms/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/smart-forms"],
+          "options": {
+            "jestConfig": "libs/smart-forms/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "defaultProject": "web",
