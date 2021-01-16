@@ -11,6 +11,8 @@ import { NumberComponent } from './number/number.component';
 import { PhoneComponent } from './phone/phone.component';
 import { EmailComponent } from './email/email.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { ErrorMessagesComponent } from './error/error-messages/error-messages.component';
+import { ErrorKeysPipe } from './error/error-keys.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { TextareaComponent } from './textarea/textarea.component';
     PhoneComponent,
     EmailComponent,
     TextareaComponent,
+    ErrorMessagesComponent,
+    ErrorKeysPipe,
   ],
   imports: [
     CommonModule,

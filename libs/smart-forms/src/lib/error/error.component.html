@@ -1,7 +1,3 @@
 <ng-container *ngIf="control.touched">
-    <mat-error *ngIf="control.hasError('email')">Please enter a valid email</mat-error>
-    <mat-error *ngIf="control.hasError('required')">This field is required</mat-error>
-    <mat-error *ngIf="control.hasError('min')">This field is too short</mat-error>
-    <mat-error *ngIf="control.hasError('max')">This field is too long</mat-error>
-    <mat-error *ngIf="control.hasError('pattern')">Invalid entry</mat-error>
+    <bb-smartish-error-messages [errors]="control.errors"></bb-smartish-error-messages>
 </ng-container> 
