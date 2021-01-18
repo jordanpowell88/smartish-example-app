@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ROUTER_NAVIGATED } from '@ngrx/router-store';
 import {
   extractVerifiedParameter,
+  routeEqualsPath,
   routeIncludesPath,
 } from 'libs/operators/src';
 import { of } from 'rxjs';
@@ -28,7 +29,7 @@ export class BillingsEffects {
   getBillingInvoicesWhenRoutedToBilling$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROUTER_NAVIGATED),
-      routeIncludesPath('/billing'),
+      routeEqualsPath('/billing'),
       map(() => getBillingInvoices())
     )
   );
