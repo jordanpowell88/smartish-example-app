@@ -38,5 +38,5 @@ const validationMessages: ValidationErrors = {
 })
 export class ErrorMessagesComponent {
   @Input() errors: ValidationErrors;
-  messages: ValidationErrors = validationMessages;
+  @Input() messages: ValidationErrors = validationMessages;
 }
