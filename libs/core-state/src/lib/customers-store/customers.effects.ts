@@ -7,6 +7,7 @@ import {
 } from '@ngrx/router-store';
 import {
   extractVerifiedParameter,
+  routeEqualsPath,
   routeIncludesPath,
 } from 'libs/operators/src';
 import { of } from 'rxjs';
@@ -32,7 +33,7 @@ export class CustomersEffects {
   getCustomersWhenRoutedToCustomers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROUTER_NAVIGATED),
-      routeIncludesPath('/customers'),
+      routeEqualsPath('/customers'),
       map(() => getCustomers())
     )
   );

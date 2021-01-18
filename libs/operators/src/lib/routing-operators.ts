@@ -13,6 +13,14 @@ export const routeIncludesPath = (url: string) =>
     )
   );
 
+export const routeEqualsPath = (url: string) =>
+  pipe(
+    map((r: RouterNavigatedAction) => r.payload.routerState),
+    filter(
+      (routerState: SerializedRouterStateSnapshot) => routerState.url === url
+    )
+  );
+
 export const extractVerifiedParameter = (param: string) =>
   pipe(
     map(

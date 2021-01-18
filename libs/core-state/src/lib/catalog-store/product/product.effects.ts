@@ -6,7 +6,7 @@ import {
   SerializedRouterStateSnapshot,
 } from '@ngrx/router-store';
 import { ProductService } from './product.service';
-import { catchError, exhaustMap, filter, map } from 'rxjs/operators';
+import { catchError, exhaustMap, filter, map, tap } from 'rxjs/operators';
 import {
   deleteProduct,
   deleteProductFailed,
@@ -25,6 +25,7 @@ import {
 import { of } from 'rxjs';
 import {
   extractVerifiedParameter,
+  routeEqualsPath,
   routeIncludesPath,
 } from 'libs/operators/src';
 
@@ -38,7 +39,7 @@ export class ProductEffects {
   getProductsWhenRoutedToCatalog$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ROUTER_NAVIGATED),
-      routeIncludesPath('/catalog'),
+      routeEqualsPath('/catalog'),
       map(() => getProducts())
     )
   );
