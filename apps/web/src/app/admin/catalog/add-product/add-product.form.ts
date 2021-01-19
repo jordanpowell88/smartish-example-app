@@ -1,15 +1,15 @@
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Size } from '@bb-smartish/api-interfaces';
 import { numeric, required } from '@bb-smartish/smart-forms';
 
 export class AddProductForm extends FormGroup {
-  readonly name: AbstractControl;
-  readonly description: AbstractControl;
-  readonly quantity: AbstractControl;
-  readonly sizes: AbstractControl;
-  readonly sku: AbstractControl;
-  readonly price: AbstractControl;
-  readonly photos: AbstractControl;
+  readonly name: FormControl;
+  readonly description: FormControl;
+  readonly quantity: FormControl;
+  readonly sizes: FormControl;
+  readonly sku: FormControl;
+  readonly price: FormControl;
+  readonly photos: FormControl;
 
   sizeOptions: Size[] = ['S', 'M', 'L', 'XL', 'XXL'];
 
@@ -25,11 +25,11 @@ export class AddProductForm extends FormGroup {
       }).controls
     );
 
-    this.name = this.get('name');
-    this.description = this.get('description');
-    this.quantity = this.get('quantity');
-    this.sizes = this.get('sizes');
-    this.sku = this.get('sku');
-    this.price = this.get('price');
+    this.name = this.get('name') as FormControl;
+    this.description = this.get('description') as FormControl;
+    this.quantity = this.get('quantity') as FormControl;
+    this.sizes = this.get('sizes') as FormControl;
+    this.sku = this.get('sku') as FormControl;
+    this.price = this.get('price') as FormControl;
   }
 }

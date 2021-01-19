@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'bb-smartish-textarea',
@@ -8,5 +8,5 @@ import { AbstractControl } from '@angular/forms';
 })
 export class TextareaComponent {
   @Input() label: string;
-  @Input() control: AbstractControl;
+  @Input() control: FormControl;
 }

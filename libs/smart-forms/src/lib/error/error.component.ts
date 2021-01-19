@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'bb-smartish-error',
@@ -7,5 +7,5 @@ import { AbstractControl } from '@angular/forms';
   styleUrls: ['./error.component.scss'],
 })
 export class ErrorComponent {
-  @Input() control: AbstractControl;
+  @Input() control: FormControl;
 }
