@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'bb-smartish-select',
@@ -8,6 +8,6 @@ import { AbstractControl } from '@angular/forms';
 })
 export class SelectComponent {
   @Input() label: string;
-  @Input() control: AbstractControl;
+  @Input() control: FormControl;
   @Input() options: string[] = [];
 }

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'bb-smartish-number',
@@ -8,5 +8,5 @@ import { AbstractControl } from '@angular/forms';
 })
 export class NumberComponent {
   @Input() label: string;
-  @Input() control: AbstractControl;
+  @Input() control: FormControl;
 }
