@@ -1,9 +1,8 @@
-<ng-container *ngIf="selectors.selectCustomer | smartSelect | async as customer">
+<ng-container *ngIf="select.customer | smartSelect | async as customer">
 
     <h1>
         {{ customer.firstName }} {{ customer.lastName }}
     </h1>
-    <!-- <h4>Category / <strong>{{ product.category.name }}</strong></h4> -->
     
     <mat-card>
         <mat-card-content>

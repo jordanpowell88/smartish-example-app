@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
 import {
   Order,
-  selectAllOrders,
-  selectOrderPaginator,
+  allOrders,
+  orderPaginator,
   updateOrderPagination,
 } from '@bb-smartish/core-state';
-import { Paginator } from 'libs/api-interfaces/src/lib';
 import { smartDispatch } from '@briebug/ngrx-smartish';
 
 type OrderColumnKeys = keyof Order;
@@ -26,6 +24,6 @@ export class OrdersComponent {
     'fulfillment',
     'items',
   ];
-  selectors = { selectAllOrders, selectOrderPaginator };
+  select = { allOrders, orderPaginator };
   updatePagination = smartDispatch(updateOrderPagination);
 }

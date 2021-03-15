@@ -7,33 +7,30 @@ const productFeatureSelector = createSelector(
   (state) => state.product
 );
 
-export const selectProductIsLoading = createSelector(
+export const productIsLoading = createSelector(
   productFeatureSelector,
   (state) => state.isLoading
 );
 
-export const selectProductError = createSelector(
+export const productError = createSelector(
   productFeatureSelector,
   (state) => state.error
 );
 
-export const selectAllProducts = createSelector(
+export const allProducts = createSelector(
   productFeatureSelector,
   (state) => state[PRODUCT_FEATURE_SLICE]
 );
 
-export const selectProductPaginator = createSelector(
+export const productPaginator = createSelector(
   productFeatureSelector,
   (state) => state.pagination
 );
 
-export const selectProduct = createSelector(productFeatureSelector, (state) =>
+export const product = createSelector(productFeatureSelector, (state) =>
   state[PRODUCT_FEATURE_SLICE].find(
     (product) => product.id === state.selectedId
   )
 );
 
-export const selectSizes = createSelector(
-  selectProduct,
-  (product) => product.sizes
-);
+export const sizes = createSelector(product, (product) => product.sizes);

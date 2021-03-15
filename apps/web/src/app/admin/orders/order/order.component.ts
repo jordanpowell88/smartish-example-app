@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { deleteOrder, selectOrder, updateOrder } from '@bb-smartish/core-state';
+import { Component } from '@angular/core';
+import { deleteOrder, order, updateOrder } from '@bb-smartish/core-state';
 import { smartDispatch } from '@briebug/ngrx-smartish';
 
 @Component({
@@ -8,7 +8,7 @@ import { smartDispatch } from '@briebug/ngrx-smartish';
   styleUrls: ['./order.component.scss'],
 })
 export class OrderComponent {
-  selectors = { selectOrder };
+  select = { order };
   save = smartDispatch(updateOrder);
   delete = smartDispatch(deleteOrder);
 }

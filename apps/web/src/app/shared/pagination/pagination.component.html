@@ -2,5 +2,5 @@
     [length]="paginator.length"
     [pageSize]="paginator.pageSize"
     [pageSizeOptions]="paginator.pageSizeOptions"
-    (page)="page.emit($event)">
+    (page)="page.emit({ pagination: $event })">
 </mat-paginator>

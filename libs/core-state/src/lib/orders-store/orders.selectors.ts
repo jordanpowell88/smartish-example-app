@@ -5,26 +5,26 @@ const ordersFeatureSelector = createFeatureSelector<OrdersState>(
   ORDERS_FEATURE
 );
 
-export const selectOrdersIsLoading = createSelector(
+export const ordersIsLoading = createSelector(
   ordersFeatureSelector,
   (state) => state.isLoading
 );
 
-export const selectOrdersError = createSelector(
+export const ordersError = createSelector(
   ordersFeatureSelector,
   (state) => state.error
 );
 
-export const selectAllOrders = createSelector(
+export const allOrders = createSelector(
   ordersFeatureSelector,
   (state) => state[ORDERS_FEATURE]
 );
 
-export const selectOrderPaginator = createSelector(
+export const orderPaginator = createSelector(
   ordersFeatureSelector,
   (state) => state.pagination
 );
 
-export const selectOrder = createSelector(ordersFeatureSelector, (state) =>
+export const order = createSelector(ordersFeatureSelector, (state) =>
   state[ORDERS_FEATURE].find((order) => order.id === state.selectedId)
 );

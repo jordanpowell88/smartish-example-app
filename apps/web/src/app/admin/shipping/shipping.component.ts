@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
 import {
-  selectAllShippings,
-  selectShippingPaginator,
+  allShippings,
+  shippingPaginator,
   ShippingInvoice,
   updateShippingPagination,
 } from '@bb-smartish/core-state';
-import { Paginator } from 'libs/api-interfaces/src/lib';
 import { smartDispatch } from '@briebug/ngrx-smartish';
 
 type ShippingInvoiceColumnKeys = keyof ShippingInvoice;
@@ -17,7 +15,7 @@ type ShippingInvoiceColumnKeys = keyof ShippingInvoice;
   styleUrls: ['./shipping.component.scss'],
 })
 export class ShippingComponent {
-  selectors = { selectAllShippings, selectShippingPaginator };
+  select = { allShippings, shippingPaginator };
   displayedColumns: ShippingInvoiceColumnKeys[] = [
     'id',
     'to',

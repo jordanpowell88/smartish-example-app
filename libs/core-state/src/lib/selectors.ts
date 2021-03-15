@@ -4,31 +4,28 @@ import {
   selectBillingIsLoading,
 } from './billings-store/billings.selectors';
 import {
-  selectProductError,
-  selectProductIsLoading,
+  productError,
+  productIsLoading,
 } from './catalog-store/product/product.selectors';
 import {
-  selectCustomersError,
-  selectCustomersIsLoading,
+  customersError,
+  customersIsLoading,
 } from './customers-store/customers.selectors';
+import { ordersError, ordersIsLoading } from './orders-store/orders.selectors';
 import {
-  selectOrdersError,
-  selectOrdersIsLoading,
-} from './orders-store/orders.selectors';
-import {
-  selectShippingError,
-  selectShippingIsLoading,
+  shippingError,
+  shippingIsLoading,
 } from './shipping-store/shipping.selectors';
 
 export const selectIsLoading: MemoizedSelector<
   object,
   boolean
 > = createSelector(
-  selectProductIsLoading,
-  selectCustomersIsLoading,
-  selectOrdersIsLoading,
+  productIsLoading,
+  customersIsLoading,
+  ordersIsLoading,
   selectBillingIsLoading,
-  selectShippingIsLoading,
+  shippingIsLoading,
   (
     productIsLoading: boolean,
     customersIsLoading: boolean,
@@ -44,11 +41,11 @@ export const selectIsLoading: MemoizedSelector<
 );
 
 export const selectError: MemoizedSelector<object, string> = createSelector(
-  selectProductError,
-  selectCustomersError,
-  selectOrdersError,
+  productError,
+  customersError,
+  ordersError,
   selectBillingError,
-  selectShippingError,
+  shippingError,
   (
     productError: string,
     customersError: string,

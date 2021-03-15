@@ -7,6 +7,7 @@ import { OrdersComponent } from './orders.component';
 import { AddOrderComponent } from './add-order/add-order.component';
 import { SmartFormsModule } from '@bb-smartish/smart-forms';
 import { NgRxSmartishModule } from '@briebug/ngrx-smartish';
+import { MaterialModule } from '@bb-smartish/material';
 
 @NgModule({
   declarations: [OrdersComponent, OrderComponent, AddOrderComponent],
@@ -15,6 +16,7 @@ import { NgRxSmartishModule } from '@briebug/ngrx-smartish';
     OrdersRoutingModule,
     SharedModule,
     SmartFormsModule,
+    MaterialModule,
     NgRxSmartishModule,
   ],
 })

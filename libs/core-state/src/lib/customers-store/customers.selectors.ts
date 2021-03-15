@@ -5,30 +5,26 @@ const customersFeatureSelector = createFeatureSelector<CustomersState>(
   CUSTOMERS_FEATURE
 );
 
-export const selectCustomersIsLoading = createSelector(
+export const customersIsLoading = createSelector(
   customersFeatureSelector,
   (state) => state.isLoading
 );
 
-export const selectCustomersError = createSelector(
+export const customersError = createSelector(
   customersFeatureSelector,
   (state) => state.error
 );
 
-export const selectAllCustomers = createSelector(
+export const allCustomers = createSelector(
   customersFeatureSelector,
   (state) => state[CUSTOMERS_FEATURE]
 );
 
-export const selectCustomerPaginator = createSelector(
+export const customerPaginator = createSelector(
   customersFeatureSelector,
   (state) => state.pagination
 );
 
-export const selectCustomer = createSelector(
-  customersFeatureSelector,
-  (state) =>
-    state[CUSTOMERS_FEATURE].find(
-      (customer) => customer.id === state.selectedId
-    )
+export const customer = createSelector(customersFeatureSelector, (state) =>
+  state[CUSTOMERS_FEATURE].find((customer) => customer.id === state.selectedId)
 );

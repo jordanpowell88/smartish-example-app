@@ -7,6 +7,7 @@ import { ProductComponent } from './product/product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { SmartFormsModule } from 'libs/smart-forms/src/lib';
 import { NgRxSmartishModule } from '@briebug/ngrx-smartish';
+import { MaterialModule } from '@bb-smartish/material';
 
 @NgModule({
   declarations: [CatalogComponent, ProductComponent, AddProductComponent],
@@ -15,6 +16,7 @@ import { NgRxSmartishModule } from '@briebug/ngrx-smartish';
     CatalogRoutingModule,
     SharedModule,
     SmartFormsModule,
+    MaterialModule,
     NgRxSmartishModule,
   ],
 })

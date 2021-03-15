@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {
   Product,
-  selectAllProducts,
-  selectProductPaginator,
+  allProducts,
+  productPaginator,
   updateProductPagination,
 } from '@bb-smartish/core-state';
 import { smartDispatch } from '@briebug/ngrx-smartish';
@@ -15,7 +15,7 @@ type CatalogColumnKeys = keyof Product;
   styleUrls: ['./catalog.component.scss'],
 })
 export class CatalogComponent {
-  selectors = { selectAllProducts, selectProductPaginator };
+  select = { allProducts, productPaginator };
   updatePagination = smartDispatch(updateProductPagination);
   displayedColumns: CatalogColumnKeys[] = [
     'name',

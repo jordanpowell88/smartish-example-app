@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { selectShipment, updateShippingInvoice } from '@bb-smartish/core-state';
+import { shipment, updateShippingInvoice } from '@bb-smartish/core-state';
 import { smartDispatch } from '@briebug/ngrx-smartish';
 
 @Component({
@@ -8,6 +8,6 @@ import { smartDispatch } from '@briebug/ngrx-smartish';
   styleUrls: ['./shipment.component.scss'],
 })
 export class ShipmentComponent {
-  selectors = { selectShipment };
+  select = { shipment };
   save = smartDispatch(updateShippingInvoice);
 }

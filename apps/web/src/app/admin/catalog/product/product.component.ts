@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import {
   deleteProduct,
-  Product,
-  selectProduct,
-  selectSizes,
+  product,
+  sizes,
   updateProduct,
 } from '@bb-smartish/core-state';
 import { smartDispatch } from '@briebug/ngrx-smartish';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'bb-smartish-product',
@@ -15,7 +13,7 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent {
-  selectors = { selectProduct, selectSizes };
+  select = { product, sizes };
   save = smartDispatch(updateProduct);
   delete = smartDispatch(deleteProduct);
 }

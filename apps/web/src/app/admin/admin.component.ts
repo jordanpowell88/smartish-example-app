@@ -4,15 +4,15 @@ import {
   Customer,
   Order,
   Product,
-  selectAllProducts,
-  selectAllCustomers,
-  selectAllOrders,
+  allProducts,
+  allCustomers,
+  allOrders,
 } from '@bb-smartish/core-state';
 
 const selectDashboardPreviews = createSelector(
-  selectAllOrders,
-  selectAllCustomers,
-  selectAllProducts,
+  allOrders,
+  allCustomers,
+  allProducts,
   (orders: Order[], customers: Customer[], products: Product[]) => [
     {
       title: 'Orders',

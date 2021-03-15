@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {
   Customer,
-  selectAllCustomers,
-  selectCustomerPaginator,
+  allCustomers,
+  customerPaginator,
   updateCustomerPagination,
 } from '@bb-smartish/core-state';
 import { smartDispatch } from '@briebug/ngrx-smartish';
@@ -15,7 +15,7 @@ type CustomerColumnKeys = keyof Customer;
   styleUrls: ['./customers.component.scss'],
 })
 export class CustomersComponent {
-  selectors = { selectAllCustomers, selectCustomerPaginator };
+  select = { allCustomers, customerPaginator };
   displayedColumns: CustomerColumnKeys[] = [
     'email',
     'totalOrders',
