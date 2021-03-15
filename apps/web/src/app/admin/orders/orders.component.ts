@@ -7,6 +7,7 @@ import {
   updateOrderPagination,
 } from '@bb-smartish/core-state';
 import { Paginator } from 'libs/api-interfaces/src/lib';
+import { smartDispatch } from '@briebug/ngrx-smartish';
 
 type OrderColumnKeys = keyof Order;
 
@@ -16,7 +17,6 @@ type OrderColumnKeys = keyof Order;
   styleUrls: ['./orders.component.scss'],
 })
 export class OrdersComponent {
-  orders$ = this.store.select(selectAllOrders);
   displayedColumns: OrderColumnKeys[] = [
     'id',
     'date',
@@ -26,12 +26,6 @@ export class OrdersComponent {
     'fulfillment',
     'items',
   ];
-
-  paginator$ = this.store.select(selectOrderPaginator);
-
-  constructor(private readonly store: Store) {}
-
-  updatePagination(pagination: Paginator): void {
-    this.store.dispatch(updateOrderPagination({ pagination }));
-  }
+  selectors = { selectAllOrders, selectOrderPaginator };
+  updatePagination = smartDispatch(updateOrderPagination);
 }

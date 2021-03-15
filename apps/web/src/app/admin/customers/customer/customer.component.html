@@ -1,4 +1,4 @@
-<ng-container *ngIf="customer$ | async as customer">
+<ng-container *ngIf="selectors.selectCustomer | smartSelect | async as customer">
 
     <h1>
         {{ customer.firstName }} {{ customer.lastName }}
@@ -17,7 +17,7 @@
             <h3>Total Orders: {{ customer.totalOrders }}</h3>
             <h3>Total Spent: {{ customer.totalSpent }}</h3>
 
-            <button mat-raised-button color="primary" (click)="save(customer)">Save</button>
+            <button mat-raised-button color="primary" (click)="save($event)">Save</button>
 
         </mat-card-content>
     </mat-card>

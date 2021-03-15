@@ -1,4 +1,4 @@
-<ng-container *ngIf="shipment$ | async as shipment">
+<ng-container *ngIf="selectors.selectShipment | smartSelect | async as shipment">
 
     <h1>
        Shipping Invoice #: {{ shipment.id }}
@@ -11,7 +11,7 @@
             <h3>Date: {{ shipment.date | date }}</h3>
             <h3>Amount: {{ shipment.amount | currency }}</h3>
 
-            <button mat-raised-button color="primary" (click)="save(shipment)">Save</button>
+            <button mat-raised-button color="primary" (click)="save($event)">Save</button>
 
         </mat-card-content>
     </mat-card>

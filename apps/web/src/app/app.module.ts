@@ -6,6 +6,11 @@ import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
+import {
+  NgRxSmartishModule,
+  SMARTISH_STORE_TOKEN,
+} from '@briebug/ngrx-smartish';
+import { Store } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,8 +21,9 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     AdminModule,
     SharedModule,
+    NgRxSmartishModule,
   ],
-  providers: [],
+  providers: [{ provide: SMARTISH_STORE_TOKEN, useClass: Store }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

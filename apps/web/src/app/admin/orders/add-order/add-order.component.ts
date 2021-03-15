@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { addOrder, Order } from '@bb-smartish/core-state';
-import { Store } from '@ngrx/store';
+import { addOrder } from '@bb-smartish/core-state';
+import { smartDispatch } from '@briebug/ngrx-smartish';
 import { AddOrderForm } from './add-order.form';
 
 @Component({
@@ -10,10 +10,5 @@ import { AddOrderForm } from './add-order.form';
 })
 export class AddOrderComponent {
   form = new AddOrderForm();
-
-  constructor(private readonly store: Store) {}
-
-  save(): void {
-    this.store.dispatch(addOrder({ order: this.form.value as Order }));
-  }
+  save = smartDispatch(addOrder);
 }

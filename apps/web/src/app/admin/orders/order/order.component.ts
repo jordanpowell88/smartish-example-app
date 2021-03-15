@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import {
-  deleteOrder,
-  Order,
-  selectOrder,
-  updateOrder,
-} from '@bb-smartish/core-state';
+import { deleteOrder, selectOrder, updateOrder } from '@bb-smartish/core-state';
+import { smartDispatch } from '@briebug/ngrx-smartish';
 
 @Component({
   selector: 'bb-smartish-order',
@@ -13,15 +8,7 @@ import {
   styleUrls: ['./order.component.scss'],
 })
 export class OrderComponent {
-  order$ = this.store.select(selectOrder);
-
-  constructor(private readonly store: Store) {}
-
-  save(order: Order): void {
-    this.store.dispatch(updateOrder({ order }));
-  }
-
-  delete(order: Order): void {
-    this.store.dispatch(deleteOrder({ order }));
-  }
+  selectors = { selectOrder };
+  save = smartDispatch(updateOrder);
+  delete = smartDispatch(deleteOrder);
 }

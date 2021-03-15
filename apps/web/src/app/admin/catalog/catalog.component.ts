@@ -5,8 +5,7 @@ import {
   selectProductPaginator,
   updateProductPagination,
 } from '@bb-smartish/core-state';
-import { Store } from '@ngrx/store';
-import { Paginator } from 'libs/api-interfaces/src/lib';
+import { smartDispatch } from '@briebug/ngrx-smartish';
 
 type CatalogColumnKeys = keyof Product;
 
@@ -16,18 +15,12 @@ type CatalogColumnKeys = keyof Product;
   styleUrls: ['./catalog.component.scss'],
 })
 export class CatalogComponent {
-  catalog$ = this.store.select(selectAllProducts);
-  paginator$ = this.store.select(selectProductPaginator);
+  selectors = { selectAllProducts, selectProductPaginator };
+  updatePagination = smartDispatch(updateProductPagination);
   displayedColumns: CatalogColumnKeys[] = [
     'name',
     'status',
     'inventory',
     'category',
   ];
-
-  constructor(private readonly store: Store) {}
-
-  updatePagination(pagination: Paginator): void {
-    this.store.dispatch(updateProductPagination({ pagination }));
-  }
 }

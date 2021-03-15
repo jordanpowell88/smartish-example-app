@@ -1,10 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import {
-  selectShipment,
-  ShippingInvoice,
-  updateShippingInvoice,
-} from '@bb-smartish/core-state';
+import { Component } from '@angular/core';
+import { selectShipment, updateShippingInvoice } from '@bb-smartish/core-state';
+import { smartDispatch } from '@briebug/ngrx-smartish';
 
 @Component({
   selector: 'bb-smartish-shipment',
@@ -12,11 +8,6 @@ import {
   styleUrls: ['./shipment.component.scss'],
 })
 export class ShipmentComponent {
-  shipment$ = this.store.select(selectShipment);
-
-  constructor(private readonly store: Store) {}
-
-  save(invoice: ShippingInvoice): void {
-    this.store.dispatch(updateShippingInvoice({ invoice }));
-  }
+  selectors = { selectShipment };
+  save = smartDispatch(updateShippingInvoice);
 }

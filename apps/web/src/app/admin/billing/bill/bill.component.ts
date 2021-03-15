@@ -4,6 +4,7 @@ import {
   selectBill,
   updateBillingInvoice,
 } from '@bb-smartish/core-state';
+import { smartDispatch } from '@briebug/ngrx-smartish';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -12,11 +13,6 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./bill.component.scss'],
 })
 export class BillComponent {
-  bill$ = this.store.select(selectBill);
-
-  constructor(private readonly store: Store) {}
-
-  save(invoice: BillingInvoice) {
-    this.store.dispatch(updateBillingInvoice({ invoice }));
-  }
+  selectors = { selectBill };
+  updateBillingInvoice = smartDispatch(updateBillingInvoice);
 }

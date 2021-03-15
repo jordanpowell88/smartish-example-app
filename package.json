@@ -41,6 +41,7 @@
     "@angular/router": "~11.0.1",
     "@briebug/jest-schematic": "^3.1.0",
     "@briebug/ngrx-auto-entity": "^0.6.0-alpha.2",
+    "@briebug/ngrx-smartish": "0.0.1-alpha.3",
     "@nestjs/common": "^7.0.0",
     "@nestjs/config": "^0.6.1",
     "@nestjs/core": "^7.0.0",
